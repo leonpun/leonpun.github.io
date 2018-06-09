@@ -229,7 +229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/08/同步/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/22/Netty笔记/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Leon Pun">
@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/08/同步/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/2018/01/22/Netty笔记/" itemprop="url">Netty笔记</a></h1>
         
 
         <div class="post-meta">
@@ -260,8 +260,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-08T20:13:57+08:00">
-                2018-06-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-22T16:12:31+08:00">
+                2018-01-22
               </time>
             
 
@@ -300,7 +300,41 @@
       
         
           
-            
+            <h2 id="Java-IO"><a href="#Java-IO" class="headerlink" title="Java IO"></a>Java IO</h2><p>策略模式，传入接口，通过回调接口实现的具体方法，提高代码行为的灵活性。<br>装饰器模式<br>Inputstream或Reader,read()<br>OutputStream或Writer,write()</p>
+<h2 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><ul>
+<li>标准的目录结构</li>
+<li>构件</li>
+<li>坐标</li>
+</ul>
+<p>GAV坐标，共有5种坐标元素：groupId、artifactId、type、version、classifier</p>
+<ul>
+<li>依赖管理<h3 id="关键元素及pom-xml用法"><a href="#关键元素及pom-xml用法" class="headerlink" title="关键元素及pom.xml用法"></a>关键元素及pom.xml用法</h3>在父项目的POM文件中，我们会使用到dependencyManagement元素。通过它来管理jar包的版本，让子项目中引用一个依赖而不用显示的列出版本号。Maven会沿着父子层次向上走，直到找到一个拥有dependencyManagement元素的项目，然后它就会使用在dependencyManagement元素中指定的版本号。<h3 id="构建的生命周期以及插件"><a href="#构建的生命周期以及插件" class="headerlink" title="构建的生命周期以及插件"></a>构建的生命周期以及插件</h3></li>
+</ul>
+<h2 id="Netty的组件和设计"><a href="#Netty的组件和设计" class="headerlink" title="Netty的组件和设计"></a>Netty的组件和设计</h2><p>Channel<br>线程安全的,生命周期：Unregistered、Registered、Active、Inactive<br>EventLoop<br>ChannelFutrue</p>
+<p>ChannelHandler，生命周期：Added、Removed、exceptionCaught<br>子接口ChannelInboundHandler、ChannelOutboundHandler<br>适配器类：ChannelHandlerAdapter、ChannelInboundHandlerAdapter、ChannelOutboundHandlerAdapter、ChannelDuplexHandler<br>抽象类：SimpleChannelInboundHandler<br>典型用途：数据格式转换、异常通知、提供Channel变为活动或者非活动的通知、提供C注册或注销到EL的通知、提供用户自定义事件的通知<br>ChannelPipeline</p>
+<p>BootStrap<br>ServerBootStrap(2个不同的EventLoopGroup)</p>
+<p>ByteBuf<br>三种，维护读写索引<br>堆缓冲区:支撑数组存在JVM堆中，适合于有遗留的数据需要处理<br>直接缓冲区：缺点是分配和释放比较昂贵<br>聚合缓冲区：CompositeByteBuf，应用:HTTP头部和主体<br>字节级操作：</p>
+<p>ByteBufHolder,将有效负载存储在ByteBuf中的消息对象</p>
+<p>接口ByteBufAllocator:Pooled and Unpooled</p>
+<ul>
+<li>ChannelOption.SO_BACKLOG</li>
+</ul>
+<p>ChannelOption.SO_BACKLOG对应的是tcp/ip协议listen函数中的backlog参数，函数listen(int socketfd,int backlog)用来初始化服务端可连接队列，服务端处理客户端连接请求是顺序处理的，所以同一时间只能处理一个客户端连接，多个客户端来的时候，服务端将不能处理的客户端连接请求放在队列中等待处理，backlog参数指定了队列的大小。</p>
+<ul>
+<li>ChannelOption.ALLOCATOR</li>
+</ul>
+<p>使用内存池之后，内存的申请和释放必须成对出现，即retain()和release()要成对出现，否则会导致内存泄露。</p>
+<p>值得注意的是，如果使用内存池，完成ByteBuf的解码工作之后必须显式的调用ReferenceCountUtil.release(msg)对接收缓冲区ByteBuf进行内存释放，否则它会被认为仍然在使用中，这样会导致内存泄露。</p>
+<ul>
+<li>ChannelOption.TCP_NODELAY</li>
+</ul>
+<p>ChannelOption.TCP_NODELAY参数对应于套接字选项中的TCP_NODELAY,该参数的使用与Nagle算法有关Nagle算法是将小的数据包组装为更大的帧然后进行发送，而不是输入一次发送一次,因此在数据包不足的时候会等待其他数据的到了，组装成大的数据包进行发送，虽然该方式有效提高网络的有效负载，但是却造成了延时，而该参数的作用就是禁止使用Nagle算法，使用于小数据即时传输，于TCP_NODELAY相对应的是TCP_CORK，该选项是需要等到发送的数据量最大的时候，一次性发送数据，适用于文件传输。</p>
+<ul>
+<li>ChannelOption.SO_REUSEADDR</li>
+</ul>
+<p>ChanneOption.SO_REUSEADDR对应于套接字选项中的SO_REUSEADDR，这个参数表示允许重复使用本地地址和端口，比如，某个服务器进程占用了TCP的80端口进行监听，此时再次监听该端口就会返回错误，使用该参数就可以解决问题，该参数允许共用该端口，这个在服务器程序中比较常使用，比如某个进程非正常退出，该程序占用的端口可能要被占用一段时间才能允许其他进程使用，而且程序死掉以后，内核一需要一定的时间才能够释放此端口，不设置SO_REUSEADDR就无法正常使用该端口。</p>
+<p><a href="https://www.jianshu.com/p/0bff7c020af2" target="_blank" rel="noopener">https://www.jianshu.com/p/0bff7c020af2</a></p>
+
           
         
       
@@ -1029,7 +1063,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
