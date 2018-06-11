@@ -229,7 +229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/22/Netty笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/Linux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Leon Pun">
@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/22/Netty笔记/" itemprop="url">Netty笔记</a></h1>
+                <a class="post-title-link" href="/2018/06/11/Linux/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -260,8 +260,156 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-22T16:12:31+08:00">
-                2018-01-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T23:07:17+08:00">
+                2018-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Linnux"><a href="#Linnux" class="headerlink" title="Linnux"></a>Linnux</h1><h2 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h2><p><a href="http://man.linuxde.net/" target="_blank" rel="noopener">http://man.linuxde.net/</a></p>
+<p>稍做记录，逐步过渡到熟练使用man命令查询</p>
+<p>使用过的命令做个记录</p>
+<p>echo</p>
+<p>set </p>
+<p>touch</p>
+<p>scp</p>
+<p>cat</p>
+<p>rm(谨慎使用！)</p>
+<p>sudo</p>
+<p>ls</p>
+<p>mkdir</p>
+<p>sleep</p>
+<p>tar</p>
+<p>[ -a FILE ] 如果 FILE 存在则为真。<br>[ -b FILE ] 如果 FILE 存在且是一个块特殊文件则为真。<br>[ -c FILE ] 如果 FILE 存在且是一个字特殊文件则为真。<br>[ -d FILE ] 如果 FILE 存在且是一个目录则为真。<br>[ -e FILE ] 如果 FILE 存在则为真。<br>[ -f FILE ] 如果 FILE 存在且是一个普通文件则为真。<br>[ -g FILE ] 如果 FILE 存在且已经设置了SGID则为真。<br>[ -h FILE ] 如果 FILE 存在且是一个符号连接则为真。<br>[ -k FILE ] 如果 FILE 存在且已经设置了粘制位则为真。<br>[ -p FILE ] 如果 FILE 存在且是一个名字管道(F如果O)则为真。<br>[ -r FILE ] 如果 FILE 存在且是可读的则为真。<br>[ -s FILE ] 如果 FILE 存在且大小不为0则为真。<br>[ -t FD ] 如果文件描述符 FD 打开且指向一个终端则为真。<br>[ -u FILE ] 如果 FILE 存在且设置了SUID (set user ID)则为真。<br>[ -w FILE ] 如果 FILE 如果 FILE 存在且是可写的则为真。<br>[ -x FILE ] 如果 FILE 存在且是可执行的则为真。<br>[ -O FILE ] 如果 FILE 存在且属有效用户ID则为真。<br>[ -G FILE ] 如果 FILE 存在且属有效用户组则为真。<br>[ -L FILE ] 如果 FILE 存在且是一个符号连接则为真。<br>[ -N FILE ] 如果 FILE 存在 and has been mod如果ied since it was last read则为真。<br>[ -S FILE ] 如果 FILE 存在且是一个套接字则为真。<br>[ FILE1 -nt FILE2 ] 如果 FILE1 has been changed more recently than FILE2,or 如果 FILE1 exists and FILE2 does not则为真。<br>[ FILE1 -ot FILE2 ] 如果 FILE1 比 FILE2 要老, 或者 FILE2 存在且 FILE1 不存在则为真。<br>[ FILE1 -ef FILE2 ] 如果 FILE1 和 FILE2 指向相同的设备和节点号则为真。<br>[ -o OPTIONNAME ] 如果 shell选项 “OPTIONNAME” 开启则为真。<br>[ -z STRING ] “STRING” 的长度为零则为真。<br>[ -n STRING ] or [ STRING ] “STRING” 的长度为非零 non-zero则为真。 </p>
+<p>[ ARG1 OP ARG2 ] “OP” is one of -eq, -ne, -lt, -le, -gt or -ge. These arithmetic binary operators return true if “ARG1” is equal to, not equal to, less than, less than or equal to, greater than, or greater than or equal to “ARG2”, respectively. “ARG1” and “ARG2” are integers. </p>
+<p>数字判断<br>[ $count -gt “1”] 如果$count 大于1 为真<br>-gt  大于<br>-lt    小于<br>-ne  不等于<br>-eq  等于<br>-ge  大于等于<br>-le  小于等于</p>
+<p>[ STRING1 == STRING2 ] 如果2个字符串相同。 “=” may be used instead of “==” for strict POSIX compliance则为真。<br>[ STRING1 != STRING2 ] 如果字符串不相等则为真。<br>[ STRING1 &lt; STRING2 ] 如果 “STRING1” sorts before “STRING2” lexicographically in the current locale则为真。<br>[ STRING1 &gt; STRING2 ] 如果 “STRING1” sorts after “STRING2” lexicographically in the current locale则为真。 </p>
+<p>特殊变量<br>$0    脚本名称<br>$1-9　脚本执行时的参数1到参数9<br>$?    脚本的返回值　　　　<br>$#    脚本执行时，输入的参数的个数<br>$@    输入的参数的具体内容（将输入的参数作为一个多个对象，即是所有参数的一个列表）<br>$*    输入的参数的具体内容（将输入的参数作为一个单词）</p>
+<p>单引号：可以说是所见即所得：即将单引号内的内容原样输出，或者描述为单引号里面看见的是什么就会输出什么。</p>
+<p>双引号：把双引号内的内容输出出来；如果内容中有命令，变量等，会先把变量，命令解析出结果，然后在输出最终内容来。双引号内命令或变量的写法为<code>命令或变量</code>或$（命令或变量）。</p>
+<p>无引号：把内容输出出来，可能不会讲含有空格的字符串视为一个整体输出；如果内容中有命令、变量等，会先把变量、命令解析结果，然后在输出最终内容来；如果字符串中带有空格等特殊字符，则不能完整的输出，需要改加双引号，一般连续的字符串，数字，路径等可以用，不过最好用双引号替代之</p>
+<h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><p>docker pull</p>
+<p>docker run</p>
+<p>docker network</p>
+<p>docker logs</p>
+<p>docker stop</p>
+<p>docker rm</p>
+<p>docker rmi</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/09/Netty笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leon Pun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeonPun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/09/Netty笔记/" itemprop="url">Netty笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-09T16:12:31+08:00">
+                2018-06-09
               </time>
             
 
@@ -1050,7 +1198,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
