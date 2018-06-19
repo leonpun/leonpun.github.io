@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="LeonPun&#39;s Blog">
 <meta property="og:description" content="Java IO策略模式，传入接口，通过回调接口实现的具体方法，提高代码行为的灵活性。装饰器模式Inputstream或Reader,read()OutputStream或Writer,write() Maven基本概念 标准的目录结构 构件 坐标  GAV坐标，共有5种坐标元素：groupId、artifactId、type、version、classifier  依赖管理关键元素及pom.xml">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-09T14:04:48.089Z">
+<meta property="og:updated_time" content="2018-06-18T07:04:43.617Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Netty笔记">
 <meta name="twitter:description" content="Java IO策略模式，传入接口，通过回调接口实现的具体方法，提高代码行为的灵活性。装饰器模式Inputstream或Reader,read()OutputStream或Writer,write() Maven基本概念 标准的目录结构 构件 坐标  GAV坐标，共有5种坐标元素：groupId、artifactId、type、version、classifier  依赖管理关键元素及pom.xml">
@@ -334,6 +334,12 @@
 </ul>
 <p>ChanneOption.SO_REUSEADDR对应于套接字选项中的SO_REUSEADDR，这个参数表示允许重复使用本地地址和端口，比如，某个服务器进程占用了TCP的80端口进行监听，此时再次监听该端口就会返回错误，使用该参数就可以解决问题，该参数允许共用该端口，这个在服务器程序中比较常使用，比如某个进程非正常退出，该程序占用的端口可能要被占用一段时间才能允许其他进程使用，而且程序死掉以后，内核一需要一定的时间才能够释放此端口，不设置SO_REUSEADDR就无法正常使用该端口。</p>
 <p><a href="https://www.jianshu.com/p/0bff7c020af2" target="_blank" rel="noopener">https://www.jianshu.com/p/0bff7c020af2</a></p>
+<p>Netty的多线程编程最佳实践如下。</p>
+<p>（1）创建两个NioEventLoopGroup，用于逻辑隔离NIO Acceptor和NIO I/O线程。</p>
+<p>（2）尽量不要在ChannelHandler中启动用户线程（解码后用于将POJO消息派发到后端业务线程的除外）。</p>
+<p>（3）解码要放在NIO线程调用的解码Handler中进行，不要切换到用户线程中完成消息的解码。</p>
+<p>（4）如果业务逻辑操作非常简单，没有复杂的业务逻辑计算，没有可能会导致线程被阻塞的磁盘操作、数据库操作、网路操作等，可以直接在NIO线程上完成业务逻辑编排，不需要切换到用户线程。</p>
+<p>（5）如果业务逻辑处理复杂，不要在NIO线程上完成，建议将解码后的POJO消息封装成Task，派发到业务线程池中由业务线程执行，以保证NIO线程尽快被释放，处理其他的I/O操作。</p>
 
       
     </div>
@@ -364,8 +370,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/22/跨域问题/" rel="next" title="跨域问题">
-                <i class="fa fa-chevron-left"></i> 跨域问题
+              <a href="/2018/04/12/负载均衡算法/" rel="next" title="负载均衡算法">
+                <i class="fa fa-chevron-left"></i> 负载均衡算法
               </a>
             
           </div>
@@ -453,7 +459,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -466,7 +472,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

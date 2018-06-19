@@ -229,7 +229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/14/【累土】谈谈final、finally、finalize有什么不同/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/Epoll/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Leon Pun">
@@ -248,7 +248,127 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/14/【累土】谈谈final、finally、finalize有什么不同/" itemprop="url">【累土】谈谈final、finally、finalize有什么不同</a></h1>
+                <a class="post-title-link" href="/2018/06/15/Epoll/" itemprop="url">Epoll</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-15T16:50:28+08:00">
+                2018-06-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>提纲挈领的思想大致为少数据量用中断，多数据量做中断合并，更大数据量时缓冲区一直存在数据则轮询，目标就是减少响应硬件（网卡）中断。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/14/谈谈final、finally、finalize有什么不同/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leon Pun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeonPun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/14/谈谈final、finally、finalize有什么不同/" itemprop="url">【累土】谈谈final、finally、finalize有什么不同</a></h1>
         
 
         <div class="post-meta">
@@ -302,130 +422,6 @@
           
             <p>final 修饰变量，表示地址不能修改，引用不可变。对于基本数据类型（常量？）来说，地址与值关联，所以不可修改，但对于集合类对象来说，对象里的值仍可以改变，</p>
 
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/12/负载均衡算法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Leon Pun">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="LeonPun's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/12/负载均衡算法/" itemprop="url">负载均衡算法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-12T16:50:28+08:00">
-                2018-06-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>自己动手实现了简单的负载均衡算法，觉得写的不是很好，线程安全性上等各方面考虑不周全，，结合Dubbo相关源码，整理思考一下，理解其扩展性。<br>先看一下接口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * LoadBalance. (SPI, Singleton, ThreadSafe)</span><br><span class="line"> * &lt;p&gt;</span><br><span class="line"> * &lt;a href=&quot;http://en.wikipedia.org/wiki/Load_balancing_(computing)&quot;&gt;Load-Balancing&lt;/a&gt;</span><br><span class="line"> *</span><br><span class="line"> * @see com.alibaba.dubbo.rpc.cluster.Cluster#join(Directory)</span><br><span class="line"> */</span><br><span class="line">@SPI(RandomLoadBalance.NAME)</span><br><span class="line">public interface LoadBalance &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * select one invoker in list.</span><br><span class="line">     *</span><br><span class="line">     * @param invokers   invokers.</span><br><span class="line">     * @param url        refer url</span><br><span class="line">     * @param invocation invocation.</span><br><span class="line">     * @return selected invoker.</span><br><span class="line">     */</span><br><span class="line">    @Adaptive(&quot;loadbalance&quot;)</span><br><span class="line">    &lt;T&gt; Invoker&lt;T&gt; select(List&lt;Invoker&lt;T&gt;&gt; invokers, URL url, Invocation invocation) throws RpcException;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>注释中说，单例，线程安全，SPI不懂先放着，并给出了维基百科相关信息。<br>学习写javadoc @see？<br>@SPI和@Adaptive不懂<br>泛型，<br>三个参数</p>
-<p>再看一下抽象类<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public abstract class AbstractLoadBalance implements LoadBalance &#123;</span><br><span class="line"></span><br><span class="line">    static int calculateWarmupWeight(int uptime, int warmup, int weight) &#123;</span><br><span class="line">        int ww = (int) ((float) uptime / ((float) warmup / (float) weight));</span><br><span class="line">        return ww &lt; 1 ? 1 : (ww &gt; weight ? weight : ww);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public &lt;T&gt; Invoker&lt;T&gt; select(List&lt;Invoker&lt;T&gt;&gt; invokers, URL url, Invocation invocation) &#123;</span><br><span class="line">        if (invokers == null || invokers.isEmpty())</span><br><span class="line">            return null;</span><br><span class="line">        if (invokers.size() == 1)</span><br><span class="line">            return invokers.get(0);</span><br><span class="line">        return doSelect(invokers, url, invocation);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected abstract &lt;T&gt; Invoker&lt;T&gt; doSelect(List&lt;Invoker&lt;T&gt;&gt; invokers, URL url, Invocation invocation);</span><br><span class="line"></span><br><span class="line">    protected int getWeight(Invoker&lt;?&gt; invoker, Invocation invocation) &#123;</span><br><span class="line">        int weight = invoker.getUrl().getMethodParameter(invocation.getMethodName(), Constants.WEIGHT_KEY, Constants.DEFAULT_WEIGHT);</span><br><span class="line">        if (weight &gt; 0) &#123;</span><br><span class="line">            long timestamp = invoker.getUrl().getParameter(Constants.REMOTE_TIMESTAMP_KEY, 0L);</span><br><span class="line">            if (timestamp &gt; 0L) &#123;</span><br><span class="line">                int uptime = (int) (System.currentTimeMillis() - timestamp);</span><br><span class="line">                int warmup = invoker.getUrl().getParameter(Constants.WARMUP_KEY, Constants.DEFAULT_WARMUP);</span><br><span class="line">                if (uptime &gt; 0 &amp;&amp; uptime &lt; warmup) &#123;</span><br><span class="line">                    weight = calculateWarmupWeight(uptime, warmup, weight);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return weight;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="随机"><a href="#随机" class="headerlink" title="随机"></a>随机</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class RandomLoadBalance extends AbstractLoadBalance &#123;</span><br><span class="line"></span><br><span class="line">    public static final String NAME = &quot;random&quot;;</span><br><span class="line"></span><br><span class="line">    private final Random random = new Random();</span><br><span class="line"></span><br><span class="line">    protected &lt;T&gt; Invoker&lt;T&gt; doSelect(List&lt;Invoker&lt;T&gt;&gt; invokers, URL url, Invocation invocation) &#123;</span><br><span class="line">        int length = invokers.size(); // Number of invokers</span><br><span class="line">        int totalWeight = 0; // The sum of weights</span><br><span class="line">        boolean sameWeight = true; // Every invoker has the same weight?</span><br><span class="line">        for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            int weight = getWeight(invokers.get(i), invocation);</span><br><span class="line">            totalWeight += weight; // Sum</span><br><span class="line">            if (sameWeight &amp;&amp; i &gt; 0</span><br><span class="line">                    &amp;&amp; weight != getWeight(invokers.get(i - 1), invocation)) &#123;</span><br><span class="line">                sameWeight = false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (totalWeight &gt; 0 &amp;&amp; !sameWeight) &#123;</span><br><span class="line">            // If (not every invoker has the same weight &amp; at least one invoker&apos;s weight&gt;0), select randomly based on totalWeight.</span><br><span class="line">            int offset = random.nextInt(totalWeight);</span><br><span class="line">            // Return a invoker based on the random value.</span><br><span class="line">            for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">                offset -= getWeight(invokers.get(i), invocation);</span><br><span class="line">                if (offset &lt; 0) &#123;</span><br><span class="line">                    return invokers.get(i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // If all invokers have the same weight value or totalWeight=0, return evenly.</span><br><span class="line">        return invokers.get(random.nextInt(length));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到，首先对权重求和ws，并在遍历过程中判断权重是否有差异，如果有差异，那么按权重进行随机，通过在[0, ws]区间上的随机数依次减去权重，当小于零时便返回结果，最后是对权重相等时进行返回结果。比起我通过（1）区间判断的方式或者（2）装填List上来说，空间和时间复杂度都要优化很多，代码也更漂亮。</p>
-<h2 id="轮询RoundRobin"><a href="#轮询RoundRobin" class="headerlink" title="轮询RoundRobin"></a>轮询RoundRobin</h2>
           
         
       
@@ -558,6 +554,8 @@
 <p>mkdir</p>
 <p>sleep</p>
 <p>tar</p>
+<p>ps</p>
+<p>kill</p>
 <p>[ -a FILE ] 如果 FILE 存在则为真。<br>[ -b FILE ] 如果 FILE 存在且是一个块特殊文件则为真。<br>[ -c FILE ] 如果 FILE 存在且是一个字特殊文件则为真。<br>[ -d FILE ] 如果 FILE 存在且是一个目录则为真。<br>[ -e FILE ] 如果 FILE 存在则为真。<br>[ -f FILE ] 如果 FILE 存在且是一个普通文件则为真。<br>[ -g FILE ] 如果 FILE 存在且已经设置了SGID则为真。<br>[ -h FILE ] 如果 FILE 存在且是一个符号连接则为真。<br>[ -k FILE ] 如果 FILE 存在且已经设置了粘制位则为真。<br>[ -p FILE ] 如果 FILE 存在且是一个名字管道(F如果O)则为真。<br>[ -r FILE ] 如果 FILE 存在且是可读的则为真。<br>[ -s FILE ] 如果 FILE 存在且大小不为0则为真。<br>[ -t FD ] 如果文件描述符 FD 打开且指向一个终端则为真。<br>[ -u FILE ] 如果 FILE 存在且设置了SUID (set user ID)则为真。<br>[ -w FILE ] 如果 FILE 如果 FILE 存在且是可写的则为真。<br>[ -x FILE ] 如果 FILE 存在且是可执行的则为真。<br>[ -O FILE ] 如果 FILE 存在且属有效用户ID则为真。<br>[ -G FILE ] 如果 FILE 存在且属有效用户组则为真。<br>[ -L FILE ] 如果 FILE 存在且是一个符号连接则为真。<br>[ -N FILE ] 如果 FILE 存在 and has been mod如果ied since it was last read则为真。<br>[ -S FILE ] 如果 FILE 存在且是一个套接字则为真。<br>[ FILE1 -nt FILE2 ] 如果 FILE1 has been changed more recently than FILE2,or 如果 FILE1 exists and FILE2 does not则为真。<br>[ FILE1 -ot FILE2 ] 如果 FILE1 比 FILE2 要老, 或者 FILE2 存在且 FILE1 不存在则为真。<br>[ FILE1 -ef FILE2 ] 如果 FILE1 和 FILE2 指向相同的设备和节点号则为真。<br>[ -o OPTIONNAME ] 如果 shell选项 “OPTIONNAME” 开启则为真。<br>[ -z STRING ] “STRING” 的长度为零则为真。<br>[ -n STRING ] or [ STRING ] “STRING” 的长度为非零 non-zero则为真。 </p>
 <p>[ ARG1 OP ARG2 ] “OP” is one of -eq, -ne, -lt, -le, -gt or -ge. These arithmetic binary operators return true if “ARG1” is equal to, not equal to, less than, less than or equal to, greater than, or greater than or equal to “ARG2”, respectively. “ARG1” and “ARG2” are integers. </p>
 <p>数字判断<br>[ $count -gt “1”] 如果$count 大于1 为真<br>-gt  大于<br>-lt    小于<br>-ne  不等于<br>-eq  等于<br>-ge  大于等于<br>-le  小于等于</p>
@@ -726,7 +724,140 @@
 </ul>
 <p>ChanneOption.SO_REUSEADDR对应于套接字选项中的SO_REUSEADDR，这个参数表示允许重复使用本地地址和端口，比如，某个服务器进程占用了TCP的80端口进行监听，此时再次监听该端口就会返回错误，使用该参数就可以解决问题，该参数允许共用该端口，这个在服务器程序中比较常使用，比如某个进程非正常退出，该程序占用的端口可能要被占用一段时间才能允许其他进程使用，而且程序死掉以后，内核一需要一定的时间才能够释放此端口，不设置SO_REUSEADDR就无法正常使用该端口。</p>
 <p><a href="https://www.jianshu.com/p/0bff7c020af2" target="_blank" rel="noopener">https://www.jianshu.com/p/0bff7c020af2</a></p>
+<p>Netty的多线程编程最佳实践如下。</p>
+<p>（1）创建两个NioEventLoopGroup，用于逻辑隔离NIO Acceptor和NIO I/O线程。</p>
+<p>（2）尽量不要在ChannelHandler中启动用户线程（解码后用于将POJO消息派发到后端业务线程的除外）。</p>
+<p>（3）解码要放在NIO线程调用的解码Handler中进行，不要切换到用户线程中完成消息的解码。</p>
+<p>（4）如果业务逻辑操作非常简单，没有复杂的业务逻辑计算，没有可能会导致线程被阻塞的磁盘操作、数据库操作、网路操作等，可以直接在NIO线程上完成业务逻辑编排，不需要切换到用户线程。</p>
+<p>（5）如果业务逻辑处理复杂，不要在NIO线程上完成，建议将解码后的POJO消息封装成Task，派发到业务线程池中由业务线程执行，以保证NIO线程尽快被释放，处理其他的I/O操作。</p>
 
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/12/负载均衡算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leon Pun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeonPun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/12/负载均衡算法/" itemprop="url">负载均衡算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-12T16:50:28+08:00">
+                2018-04-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>自己动手实现了简单的负载均衡算法，觉得写的不是很好，线程安全性上等各方面考虑不周全，结合Dubbo相关源码，整理思考一下，理解其扩展性。<br>先看一下接口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * LoadBalance. (SPI, Singleton, ThreadSafe)</span><br><span class="line"> * &lt;p&gt;</span><br><span class="line"> * &lt;a href=&quot;http://en.wikipedia.org/wiki/Load_balancing_(computing)&quot;&gt;Load-Balancing&lt;/a&gt;</span><br><span class="line"> *</span><br><span class="line"> * @see com.alibaba.dubbo.rpc.cluster.Cluster#join(Directory)</span><br><span class="line"> */</span><br><span class="line">@SPI(RandomLoadBalance.NAME)</span><br><span class="line">public interface LoadBalance &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * select one invoker in list.</span><br><span class="line">     *</span><br><span class="line">     * @param invokers   invokers.</span><br><span class="line">     * @param url        refer url</span><br><span class="line">     * @param invocation invocation.</span><br><span class="line">     * @return selected invoker.</span><br><span class="line">     */</span><br><span class="line">    @Adaptive(&quot;loadbalance&quot;)</span><br><span class="line">    &lt;T&gt; Invoker&lt;T&gt; select(List&lt;Invoker&lt;T&gt;&gt; invokers, URL url, Invocation invocation) throws RpcException;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注释中第一条是SPI，查询了一下相关内容</p>
+<blockquote>
+<p>SPI的全名为Service Provider Interface。大多数开发人员可能不熟悉，因为这个是针对厂商或者插件的。在java.util.ServiceLoader的文档里有比较详细的介绍。简单的总结下java spi机制的思想。我们系统里抽象的各个模块，往往有很多不同的实现方案，比如日志模块的方案，xml解析模块、jdbc模块的方案等。面向的对象的设计里，我们一般推荐模块之间基于接口编程，模块之间不对实现类进行硬编码。一旦代码里涉及具体的实现类，就违反了可拔插的原则，如果需要替换一种实现，就需要修改代码。为了实现在模块装配的时候能不在程序里动态指明，这就需要一种服务发现机制。 java spi就是提供这样的一个机制：为某个接口寻找服务实现的机制。有点类似IOC的思想，就是将装配的控制权移到程序之外，在模块化设计中这个机制尤其重要，java spi的具体约定为:当服务的提供者，提供了服务接口的一种实现之后，在jar包的META-INF/services/目录里同时创建一个以服务接口命名的文件。该文件里就是实现该服务接口的具体实现类。而当外部程序装配这个模块的时候，就能通过该jar包META-INF/services/里的配置文件找到具体的实现类名，并装载实例化，完成模块的注入。 基于这样一个约定就能很好的找到服务接口的实现类，而不需要再代码里制定。jdk提供服务实现查找的一个工具类：java.util.ServiceLoader。<br>但是Dubbo中使用的SPI技术不是源用JDK的，但是思想是一样的。同时说明了是单例，线程安全，并给出了维基百科中负载均衡的相关信息。<br>接口中的唯一方法也很好理解，再去看一下抽象类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public abstract class AbstractLoadBalance implements LoadBalance &#123;</span><br><span class="line"></span><br><span class="line">    static int calculateWarmupWeight(int uptime, int warmup, int weight) &#123;</span><br><span class="line">        int ww = (int) ((float) uptime / ((float) warmup / (float) weight));</span><br><span class="line">        return ww &lt; 1 ? 1 : (ww &gt; weight ? weight : ww);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public &lt;T&gt; Invoker&lt;T&gt; select(List&lt;Invoker&lt;T&gt;&gt; invokers, URL url, Invocation invocation) &#123;</span><br><span class="line">        if (invokers == null || invokers.isEmpty())</span><br><span class="line">            return null;</span><br><span class="line">        if (invokers.size() == 1)</span><br><span class="line">            return invokers.get(0);</span><br><span class="line">        return doSelect(invokers, url, invocation);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected abstract &lt;T&gt; Invoker&lt;T&gt; doSelect(List&lt;Invoker&lt;T&gt;&gt; invokers, URL url, Invocation invocation);</span><br><span class="line"></span><br><span class="line">    protected int getWeight(Invoker&lt;?&gt; invoker, Invocation invocation) &#123;</span><br><span class="line">        int weight = invoker.getUrl().getMethodParameter(invocation.getMethodName(), Constants.WEIGHT_KEY, Constants.DEFAULT_WEIGHT);</span><br><span class="line">        if (weight &gt; 0) &#123;</span><br><span class="line">            long timestamp = invoker.getUrl().getParameter(Constants.REMOTE_TIMESTAMP_KEY, 0L);</span><br><span class="line">            if (timestamp &gt; 0L) &#123;</span><br><span class="line">                int uptime = (int) (System.currentTimeMillis() - timestamp);</span><br><span class="line">                int warmup = invoker.getUrl().getParameter(Constants.WARMUP_KEY, Constants.DEFAULT_WARMUP);</span><br><span class="line">                if (uptime &gt; 0 &amp;&amp; uptime &lt; warmup) &#123;</span><br><span class="line">                    weight = calculateWarmupWeight(uptime, warmup, weight);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return weight;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>再看一下默认的随机负载均衡和其他策略的具体实现：</p>
+<h2 id="权重随机"><a href="#权重随机" class="headerlink" title="权重随机"></a>权重随机</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class RandomLoadBalance extends AbstractLoadBalance &#123;</span><br><span class="line"></span><br><span class="line">    public static final String NAME = &quot;random&quot;;</span><br><span class="line"></span><br><span class="line">    private final Random random = new Random();</span><br><span class="line"></span><br><span class="line">    protected &lt;T&gt; Invoker&lt;T&gt; doSelect(List&lt;Invoker&lt;T&gt;&gt; invokers, URL url, Invocation invocation) &#123;</span><br><span class="line">        int length = invokers.size(); // Number of invokers</span><br><span class="line">        int totalWeight = 0; // The sum of weights</span><br><span class="line">        boolean sameWeight = true; // Every invoker has the same weight?</span><br><span class="line">        for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            int weight = getWeight(invokers.get(i), invocation);</span><br><span class="line">            totalWeight += weight; // Sum</span><br><span class="line">            if (sameWeight &amp;&amp; i &gt; 0</span><br><span class="line">                    &amp;&amp; weight != getWeight(invokers.get(i - 1), invocation)) &#123;</span><br><span class="line">                sameWeight = false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (totalWeight &gt; 0 &amp;&amp; !sameWeight) &#123;</span><br><span class="line">            // If (not every invoker has the same weight &amp; at least one invoker&apos;s weight&gt;0), select randomly based on totalWeight.</span><br><span class="line">            int offset = random.nextInt(totalWeight);</span><br><span class="line">            // Return a invoker based on the random value.</span><br><span class="line">            for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">                offset -= getWeight(invokers.get(i), invocation);</span><br><span class="line">                if (offset &lt; 0) &#123;</span><br><span class="line">                    return invokers.get(i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // If all invokers have the same weight value or totalWeight=0, return evenly.</span><br><span class="line">        return invokers.get(random.nextInt(length));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以看到，首先对权重求和ws，并在遍历过程中判断权重是否有差异，如果有差异，那么按权重进行随机，通过在[0, ws]区间上的随机数依次减去权重，当小于零时便返回结果，最后是对权重相等时进行返回结果。比起我通过（1）区间判断的方式或者（2）装填List上来说，空间和时间复杂度都要优化很多，代码也更漂亮。</p>
+<h2 id="轮询RoundRobin"><a href="#轮询RoundRobin" class="headerlink" title="轮询RoundRobin"></a>轮询RoundRobin</h2>
           
         
       
@@ -915,7 +1046,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/01/19/1-15-DSAA-Pro/" itemprop="url">1/15 DSAA Pro</a></h1>
+                <a class="post-title-link" href="/2018/01/19/1-15-DSAA-Pro/" itemprop="url">DSAA Pro</a></h1>
         
 
         <div class="post-meta">
@@ -978,6 +1109,9 @@
 <h3 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;  </span><br><span class="line">    private static class SingletonHolder &#123;  </span><br><span class="line">    	private static final Singleton INSTANCE = new Singleton();  </span><br><span class="line">    &#125;  </span><br><span class="line">    private Singleton ()&#123;&#125;  </span><br><span class="line">    public static final Singleton getInstance() &#123;  </span><br><span class="line">    	return SingletonHolder.INSTANCE;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public enum Singleton &#123;  </span><br><span class="line">    INSTANCE;  </span><br><span class="line">    public void whateverMethod() &#123;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这种方式是Effective Java作者Josh Bloch 提倡的方式，它不仅能避免多线程同步问题，而且还能防止反序列化重新创建新的对象。</p>
+<h3 id="应用尝试："><a href="#应用尝试：" class="headerlink" title="应用尝试："></a>应用尝试：</h3><ul>
+<li>单例路由对象获取注册中心内容的缓存，实现方式：静态内部类</li>
+</ul>
 <h2 id="Q2"><a href="#Q2" class="headerlink" title="Q2"></a>Q2</h2><blockquote>
 <p>在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。</p>
 </blockquote>
@@ -995,7 +1129,7 @@
 <p>我们给出一个单向链表，我们需要看看这个链表是否有循环的部分，如果有循环，返回起始的节点，如果没有循环存在，我们返回null。</p>
 </blockquote>
 <ul>
-<li>用HashTable存取结点，</li>
+<li>用HashTable存取结点</li>
 </ul>
 
           
@@ -1240,6 +1374,7 @@
 <li>Alt+ left/right 切换代码视图</li>
 <li>Alt+ Up/Down 在方法间快速移动定位</li>
 <li>Ctrl + Alt+ left/right 返回至上次浏览的位置</li>
+<li>Ctrl + F12 弹出当前文件结构层</li>
 </ul>
 
           
@@ -1360,7 +1495,7 @@
       
         
           
-            <p>拖了很久的博客终于抽时间搭起来了，会陆续把之前的笔记和想法整理润色搬运过来，并尽可能翻译一些新鲜的外文博客或写一些原创文章！</p>
+            <p>拖了很久的博客终于抽时间搭起来了，会陆续把之前的笔记和想法整理润色搬运过来，并尽可能翻译一些最新的外文博客或写一些原创文章！( •̀ ω •́ )y</p>
 
           
         
@@ -1442,7 +1577,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1455,7 +1590,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

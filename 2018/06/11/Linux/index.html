@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Shellhttp://man.linuxde.net/ 稍做记录，逐步过渡到熟练使用man命令查询 使用过的命令做个记录 echo set  touch scp cat rm(谨慎使用！) sudo ls mkdir sleep tar [ -a FILE ] 如果 FILE 存在则为真。[ -b FILE ] 如果 FILE 存在且是一个块特殊文件则为真。[ -c FILE ] 如果 FILE">
+<meta name="description" content="Shellhttp://man.linuxde.net/ 稍做记录，逐步过渡到熟练使用man命令查询 使用过的命令做个记录 echo set  touch scp cat rm(谨慎使用！) sudo ls mkdir sleep tar ps kill [ -a FILE ] 如果 FILE 存在则为真。[ -b FILE ] 如果 FILE 存在且是一个块特殊文件则为真。[ -c FILE ]">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux">
 <meta property="og:url" content="http://yoursite.com/2018/06/11/Linux/index.html">
 <meta property="og:site_name" content="LeonPun&#39;s Blog">
-<meta property="og:description" content="Shellhttp://man.linuxde.net/ 稍做记录，逐步过渡到熟练使用man命令查询 使用过的命令做个记录 echo set  touch scp cat rm(谨慎使用！) sudo ls mkdir sleep tar [ -a FILE ] 如果 FILE 存在则为真。[ -b FILE ] 如果 FILE 存在且是一个块特殊文件则为真。[ -c FILE ] 如果 FILE">
+<meta property="og:description" content="Shellhttp://man.linuxde.net/ 稍做记录，逐步过渡到熟练使用man命令查询 使用过的命令做个记录 echo set  touch scp cat rm(谨慎使用！) sudo ls mkdir sleep tar ps kill [ -a FILE ] 如果 FILE 存在则为真。[ -b FILE ] 如果 FILE 存在且是一个块特殊文件则为真。[ -c FILE ]">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-11T15:10:17.288Z">
+<meta property="og:updated_time" content="2018-06-15T06:13:45.603Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux">
-<meta name="twitter:description" content="Shellhttp://man.linuxde.net/ 稍做记录，逐步过渡到熟练使用man命令查询 使用过的命令做个记录 echo set  touch scp cat rm(谨慎使用！) sudo ls mkdir sleep tar [ -a FILE ] 如果 FILE 存在则为真。[ -b FILE ] 如果 FILE 存在且是一个块特殊文件则为真。[ -c FILE ] 如果 FILE">
+<meta name="twitter:description" content="Shellhttp://man.linuxde.net/ 稍做记录，逐步过渡到熟练使用man命令查询 使用过的命令做个记录 echo set  touch scp cat rm(谨慎使用！) sudo ls mkdir sleep tar ps kill [ -a FILE ] 如果 FILE 存在则为真。[ -b FILE ] 如果 FILE 存在且是一个块特殊文件则为真。[ -c FILE ]">
 
 
 
@@ -313,6 +313,8 @@
 <p>mkdir</p>
 <p>sleep</p>
 <p>tar</p>
+<p>ps</p>
+<p>kill</p>
 <p>[ -a FILE ] 如果 FILE 存在则为真。<br>[ -b FILE ] 如果 FILE 存在且是一个块特殊文件则为真。<br>[ -c FILE ] 如果 FILE 存在且是一个字特殊文件则为真。<br>[ -d FILE ] 如果 FILE 存在且是一个目录则为真。<br>[ -e FILE ] 如果 FILE 存在则为真。<br>[ -f FILE ] 如果 FILE 存在且是一个普通文件则为真。<br>[ -g FILE ] 如果 FILE 存在且已经设置了SGID则为真。<br>[ -h FILE ] 如果 FILE 存在且是一个符号连接则为真。<br>[ -k FILE ] 如果 FILE 存在且已经设置了粘制位则为真。<br>[ -p FILE ] 如果 FILE 存在且是一个名字管道(F如果O)则为真。<br>[ -r FILE ] 如果 FILE 存在且是可读的则为真。<br>[ -s FILE ] 如果 FILE 存在且大小不为0则为真。<br>[ -t FD ] 如果文件描述符 FD 打开且指向一个终端则为真。<br>[ -u FILE ] 如果 FILE 存在且设置了SUID (set user ID)则为真。<br>[ -w FILE ] 如果 FILE 如果 FILE 存在且是可写的则为真。<br>[ -x FILE ] 如果 FILE 存在且是可执行的则为真。<br>[ -O FILE ] 如果 FILE 存在且属有效用户ID则为真。<br>[ -G FILE ] 如果 FILE 存在且属有效用户组则为真。<br>[ -L FILE ] 如果 FILE 存在且是一个符号连接则为真。<br>[ -N FILE ] 如果 FILE 存在 and has been mod如果ied since it was last read则为真。<br>[ -S FILE ] 如果 FILE 存在且是一个套接字则为真。<br>[ FILE1 -nt FILE2 ] 如果 FILE1 has been changed more recently than FILE2,or 如果 FILE1 exists and FILE2 does not则为真。<br>[ FILE1 -ot FILE2 ] 如果 FILE1 比 FILE2 要老, 或者 FILE2 存在且 FILE1 不存在则为真。<br>[ FILE1 -ef FILE2 ] 如果 FILE1 和 FILE2 指向相同的设备和节点号则为真。<br>[ -o OPTIONNAME ] 如果 shell选项 “OPTIONNAME” 开启则为真。<br>[ -z STRING ] “STRING” 的长度为零则为真。<br>[ -n STRING ] or [ STRING ] “STRING” 的长度为非零 non-zero则为真。 </p>
 <p>[ ARG1 OP ARG2 ] “OP” is one of -eq, -ne, -lt, -le, -gt or -ge. These arithmetic binary operators return true if “ARG1” is equal to, not equal to, less than, less than or equal to, greater than, or greater than or equal to “ARG2”, respectively. “ARG1” and “ARG2” are integers. </p>
 <p>数字判断<br>[ $count -gt “1”] 如果$count 大于1 为真<br>-gt  大于<br>-lt    小于<br>-ne  不等于<br>-eq  等于<br>-ge  大于等于<br>-le  小于等于</p>
@@ -362,8 +364,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/12/负载均衡算法/" rel="prev" title="负载均衡算法">
-                负载均衡算法 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/14/谈谈final、finally、finalize有什么不同/" rel="prev" title="【累土】谈谈final、finally、finalize有什么不同">
+                【累土】谈谈final、finally、finalize有什么不同 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -441,7 +443,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -454,7 +456,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
