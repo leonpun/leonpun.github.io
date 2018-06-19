@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Linux," />
+  <meta name="keywords" content="Java," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="提纲挈领的思想大致为少数据量用中断，多数据量做中断合并，更大数据量时缓冲区一直存在数据则轮询，目标就是减少响应硬件（网卡）中断。">
-<meta name="keywords" content="Linux">
+<meta name="description" content="谈谈final、finally、finalize有什么不同？final 修饰变量，表示地址不能修改，引用不可变。对于基本数据类型来说，地址与值关联，所以不可修改，但对于集合类对象来说，对象里的值仍可以改变。">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Epoll">
-<meta property="og:url" content="http://yoursite.com/2018/06/15/Epoll/index.html">
+<meta property="og:title" content="Java基础">
+<meta property="og:url" content="http://yoursite.com/2018/01/14/Java基础/index.html">
 <meta property="og:site_name" content="LeonPun&#39;s Blog">
-<meta property="og:description" content="提纲挈领的思想大致为少数据量用中断，多数据量做中断合并，更大数据量时缓冲区一直存在数据则轮询，目标就是减少响应硬件（网卡）中断。">
+<meta property="og:description" content="谈谈final、finally、finalize有什么不同？final 修饰变量，表示地址不能修改，引用不可变。对于基本数据类型来说，地址与值关联，所以不可修改，但对于集合类对象来说，对象里的值仍可以改变。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-15T05:11:56.864Z">
+<meta property="og:updated_time" content="2018-06-19T03:53:22.568Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Epoll">
-<meta name="twitter:description" content="提纲挈领的思想大致为少数据量用中断，多数据量做中断合并，更大数据量时缓冲区一直存在数据则轮询，目标就是减少响应硬件（网卡）中断。">
+<meta name="twitter:title" content="Java基础">
+<meta name="twitter:description" content="谈谈final、finally、finalize有什么不同？final 修饰变量，表示地址不能修改，引用不可变。对于基本数据类型来说，地址与值关联，所以不可修改，但对于集合类对象来说，对象里的值仍可以改变。">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/15/Epoll/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/14/Java基础/"/>
 
 
 
 
 
-  <title>Epoll | LeonPun's Blog</title>
+  <title>Java基础 | LeonPun's Blog</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/15/Epoll/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/14/Java基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Leon Pun">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Epoll</h1>
+          <h1 class="post-title" itemprop="name headline">Java基础</h1>
         
 
         <div class="post-meta">
@@ -262,8 +262,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-15T16:50:28+08:00">
-                2018-06-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-14T16:50:28+08:00">
+                2018-01-14
               </time>
             
 
@@ -300,7 +300,9 @@
       
 
       
-        <p>提纲挈领的思想大致为少数据量用中断，多数据量做中断合并，更大数据量时缓冲区一直存在数据则轮询，目标就是减少响应硬件（网卡）中断。</p>
+        <blockquote>
+<p>谈谈final、finally、finalize有什么不同？<br>final 修饰变量，表示地址不能修改，引用不可变。对于基本数据类型来说，地址与值关联，所以不可修改，但对于集合类对象来说，对象里的值仍可以改变。</p>
+</blockquote>
 
       
     </div>
@@ -318,7 +320,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
         </div>
       
@@ -331,8 +333,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/14/谈谈final、finally、finalize有什么不同/" rel="next" title="【累土】谈谈final、finally、finalize有什么不同">
-                <i class="fa fa-chevron-left"></i> 【累土】谈谈final、finally、finalize有什么不同
+              <a href="/2018/01/04/MIT6-824课程笔记/" rel="next" title="MIT6.824课程笔记">
+                <i class="fa fa-chevron-left"></i> MIT6.824课程笔记
               </a>
             
           </div>
@@ -340,6 +342,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/19/DSAA-Pro/" rel="prev" title="DSAA Pro">
+                DSAA Pro <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -407,7 +413,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
