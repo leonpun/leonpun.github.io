@@ -87,7 +87,7 @@
 <meta property="og:description" content="最近计划把RocketMQ和kafka的Store部分反复理解一下，自己实现一套功能基础的队列引擎，常更常新，觉得还是记录下来比较好！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/06/21/中间件复赛/架构.png">
-<meta property="og:updated_time" content="2018-06-21T06:39:16.853Z">
+<meta property="og:updated_time" content="2018-06-21T07:04:41.494Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="百万级队列引擎">
 <meta name="twitter:description" content="最近计划把RocketMQ和kafka的Store部分反复理解一下，自己实现一套功能基础的队列引擎，常更常新，觉得还是记录下来比较好！">
@@ -302,7 +302,21 @@
 
       
         <p>最近计划把RocketMQ和kafka的Store部分反复理解一下，自己实现一套功能基础的队列引擎，常更常新，觉得还是记录下来比较好！<br><a id="more"></a></p>
-<h2 id="赛题背景"><a href="#赛题背景" class="headerlink" title="赛题背景"></a>赛题背景</h2><h2 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h2><p>数据结构<br><img src="/2018/06/21/中间件复赛/架构.png" title="数据结构"></p>
+<h2 id="赛题背景"><a href="#赛题背景" class="headerlink" title="赛题背景"></a>赛题背景</h2><h2 id="设计思路"><a href="#设计思路" class="headerlink" title="设计思路"></a>设计思路</h2><h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>大文件log的方式进行存储<br><img src="/2018/06/21/中间件复赛/架构.png" title="数据结构"></p>
+<h3 id="写入流程"><a href="#写入流程" class="headerlink" title="写入流程"></a>写入流程</h3><ol>
+<li>根据queueName查询索引，查找DataBlock的位置（在文件中的offset）和写入位置（在文件中的写入位置）</li>
+<li>拿到这个offset后定位这个DataBlock的MappedByteBuffer</li>
+<li>进行写入操作(将消息序列化，mmap写盘，更新索引)</li>
+</ol>
+<h3 id="读取流程"><a href="#读取流程" class="headerlink" title="读取流程"></a>读取流程</h3><ol>
+<li>根据queueName查询索引，查找DataBlock的位置（在文件中的offset）和写入位置（在文件中的写入位置）</li>
+<li>拿到这个offset后定位这个DataBlock的MappedByteBuffer</li>
+<li>顺序读取对应条数的记录</li>
+</ol>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>MappedByteBuffer本身是线程不安全的，因为有position属性，所以要Slice</li>
+<li>使用一到多个DataBlock来存储数据，数量与BlockSize相关</li>
+</ul>
 
       
     </div>
@@ -468,7 +482,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#赛题背景"><span class="nav-number">1.</span> <span class="nav-text">赛题背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计思路"><span class="nav-number">2.</span> <span class="nav-text">设计思路</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#赛题背景"><span class="nav-number">1.</span> <span class="nav-text">赛题背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计思路"><span class="nav-number">2.</span> <span class="nav-text">设计思路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构"><span class="nav-number">2.1.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写入流程"><span class="nav-number">2.2.</span> <span class="nav-text">写入流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取流程"><span class="nav-number">2.3.</span> <span class="nav-text">读取流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">2.4.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></div>
             
 
           </div>
