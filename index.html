@@ -229,6 +229,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/20/rocketmq-strore/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leon Pun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeonPun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/06/20/rocketmq-strore/" itemprop="url">RocketMQ-Store</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-20T16:50:28+08:00">
+                2018-06-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>首先梳理一下基本的落盘过程<br>入口文件</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/Linux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -299,40 +419,15 @@
 
       
         
-          
-            <h2 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h2><p><a href="http://man.linuxde.net/" target="_blank" rel="noopener">http://man.linuxde.net/</a></p>
+          <h2 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h2><p><a href="http://man.linuxde.net/" target="_blank" rel="noopener">http://man.linuxde.net/</a></p>
 <p>使用过的命令稍做记录，逐步过渡到熟练使用man命令查询</p>
-<p>echo</p>
-<p>set </p>
-<p>touch</p>
-<p>scp</p>
-<p>cat</p>
-<p>rm(谨慎使用！)</p>
-<p>sudo</p>
-<p>ls</p>
-<p>mkdir</p>
-<p>sleep</p>
-<p>tar</p>
-<p>ps</p>
-<p>kill</p>
-<p>[ -a FILE ] 如果 FILE 存在则为真。<br>[ -b FILE ] 如果 FILE 存在且是一个块特殊文件则为真。<br>[ -c FILE ] 如果 FILE 存在且是一个字特殊文件则为真。<br>[ -d FILE ] 如果 FILE 存在且是一个目录则为真。<br>[ -e FILE ] 如果 FILE 存在则为真。<br>[ -f FILE ] 如果 FILE 存在且是一个普通文件则为真。<br>[ -g FILE ] 如果 FILE 存在且已经设置了SGID则为真。<br>[ -h FILE ] 如果 FILE 存在且是一个符号连接则为真。<br>[ -k FILE ] 如果 FILE 存在且已经设置了粘制位则为真。<br>[ -p FILE ] 如果 FILE 存在且是一个名字管道(F如果O)则为真。<br>[ -r FILE ] 如果 FILE 存在且是可读的则为真。<br>[ -s FILE ] 如果 FILE 存在且大小不为0则为真。<br>[ -t FD ] 如果文件描述符 FD 打开且指向一个终端则为真。<br>[ -u FILE ] 如果 FILE 存在且设置了SUID (set user ID)则为真。<br>[ -w FILE ] 如果 FILE 如果 FILE 存在且是可写的则为真。<br>[ -x FILE ] 如果 FILE 存在且是可执行的则为真。<br>[ -O FILE ] 如果 FILE 存在且属有效用户ID则为真。<br>[ -G FILE ] 如果 FILE 存在且属有效用户组则为真。<br>[ -L FILE ] 如果 FILE 存在且是一个符号连接则为真。<br>[ -N FILE ] 如果 FILE 存在 and has been mod如果ied since it was last read则为真。<br>[ -S FILE ] 如果 FILE 存在且是一个套接字则为真。<br>[ FILE1 -nt FILE2 ] 如果 FILE1 has been changed more recently than FILE2,or 如果 FILE1 exists and FILE2 does not则为真。<br>[ FILE1 -ot FILE2 ] 如果 FILE1 比 FILE2 要老, 或者 FILE2 存在且 FILE1 不存在则为真。<br>[ FILE1 -ef FILE2 ] 如果 FILE1 和 FILE2 指向相同的设备和节点号则为真。<br>[ -o OPTIONNAME ] 如果 shell选项 “OPTIONNAME” 开启则为真。<br>[ -z STRING ] “STRING” 的长度为零则为真。<br>[ -n STRING ] or [ STRING ] “STRING” 的长度为非零 non-zero则为真。 </p>
-<p>[ ARG1 OP ARG2 ] “OP” is one of -eq, -ne, -lt, -le, -gt or -ge. These arithmetic binary operators return true if “ARG1” is equal to, not equal to, less than, less than or equal to, greater than, or greater than or equal to “ARG2”, respectively. “ARG1” and “ARG2” are integers. </p>
-<p>数字判断<br>[ $count -gt “1”] 如果$count 大于1 为真<br>-gt  大于<br>-lt    小于<br>-ne  不等于<br>-eq  等于<br>-ge  大于等于<br>-le  小于等于</p>
-<p>[ STRING1 == STRING2 ] 如果2个字符串相同。 “=” may be used instead of “==” for strict POSIX compliance则为真。<br>[ STRING1 != STRING2 ] 如果字符串不相等则为真。<br>[ STRING1 &lt; STRING2 ] 如果 “STRING1” sorts before “STRING2” lexicographically in the current locale则为真。<br>[ STRING1 &gt; STRING2 ] 如果 “STRING1” sorts after “STRING2” lexicographically in the current locale则为真。 </p>
-<p>特殊变量<br>$0    脚本名称<br>$1-9　脚本执行时的参数1到参数9<br>$?    脚本的返回值　　　　<br>$#    脚本执行时，输入的参数的个数<br>$@    输入的参数的具体内容（将输入的参数作为一个多个对象，即是所有参数的一个列表）<br>$*    输入的参数的具体内容（将输入的参数作为一个单词）</p>
-<p>单引号：可以说是所见即所得：即将单引号内的内容原样输出，或者描述为单引号里面看见的是什么就会输出什么。</p>
-<p>双引号：把双引号内的内容输出出来；如果内容中有命令，变量等，会先把变量，命令解析出结果，然后在输出最终内容来。双引号内命令或变量的写法为<code>命令或变量</code>或$（命令或变量）。</p>
-<p>无引号：把内容输出出来，可能不会讲含有空格的字符串视为一个整体输出；如果内容中有命令、变量等，会先把变量、命令解析结果，然后在输出最终内容来；如果字符串中带有空格等特殊字符，则不能完整的输出，需要改加双引号，一般连续的字符串，数字，路径等可以用，不过最好用双引号替代之</p>
-<h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><p>docker pull</p>
-<p>docker run</p>
-<p>docker network</p>
-<p>docker logs</p>
-<p>docker stop</p>
-<p>docker rm</p>
-<p>docker rmi</p>
-<h2 id="Epoll"><a href="#Epoll" class="headerlink" title="Epoll"></a>Epoll</h2><p>提纲挈领的思想大致为少数据量用中断，多数据量做中断合并，更大数据量时缓冲区一直存在数据则轮询，目标就是减少响应硬件（网卡）中断。</p>
-<h2 id="mmap"><a href="#mmap" class="headerlink" title="mmap"></a>mmap</h2>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/11/Linux/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -449,22 +544,14 @@
 
       
         
-          
-            <p>在阅读《Netty实战》时，发现需要反复阅读和实践才能真正理解Netty的设计，这次用的比较多的就是其线程模型，但其实每一块内容都值得反复思考和实践。</p>
-<h2 id="Java-IO"><a href="#Java-IO" class="headerlink" title="Java IO"></a>Java IO</h2><p>策略模式，传入接口，通过回调接口实现的具体方法，提高代码行为的灵活性。<br>装饰器模式<br>Inputstream或Reader,read()<br>OutputStream或Writer,write()</p>
-<h2 id="Netty的组件和设计"><a href="#Netty的组件和设计" class="headerlink" title="Netty的组件和设计"></a>Netty的组件和设计</h2><h3 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h3><p>线程安全的,生命周期：Unregistered、Registered、Active、Inactive</p>
-<h3 id="EventLoop"><a href="#EventLoop" class="headerlink" title="EventLoop"></a>EventLoop</h3><h3 id="ChannelFutrue"><a href="#ChannelFutrue" class="headerlink" title="ChannelFutrue"></a>ChannelFutrue</h3><h3 id="ChannelHandler"><a href="#ChannelHandler" class="headerlink" title="ChannelHandler"></a>ChannelHandler</h3><p>生命周期：Added、Removed、exceptionCaught<br>子接口ChannelInboundHandler、ChannelOutboundHandler<br>适配器类：ChannelHandlerAdapter、ChannelInboundHandlerAdapter、ChannelOutboundHandlerAdapter、ChannelDuplexHandler<br>抽象类：SimpleChannelInboundHandler<br>典型用途：数据格式转换、异常通知、提供Channel变为活动或者非活动的通知、提供Channel注册或注销到EventLoop的通知、提供用户自定义事件的通知<br>ChannelPipeline</p>
-<h3 id="BootStrap"><a href="#BootStrap" class="headerlink" title="BootStrap"></a>BootStrap</h3><p>ServerBootStrap(2个不同的EventLoopGroup，Boss和Worker)<br>ChannelOption属性：<a href="https://www.jianshu.com/p/0bff7c020af2" target="_blank" rel="noopener">https://www.jianshu.com/p/0bff7c020af2</a></p>
-<h3 id="ByteBuf"><a href="#ByteBuf" class="headerlink" title="ByteBuf"></a>ByteBuf</h3><p>三种，维护读写索引<br>堆缓冲区:支撑数组存在JVM堆中，适合于有遗留的数据需要处理<br>直接缓冲区：缺点是分配和释放比较昂贵<br>聚合缓冲区：CompositeByteBuf，应用:HTTP头部和主体<br>ByteBufHolder,将有效负载存储在ByteBuf中的消息对象<br>接口ByteBufAllocator:Pooled and Unpooled</p>
-<h3 id="Netty的多线程编程最佳实践"><a href="#Netty的多线程编程最佳实践" class="headerlink" title="Netty的多线程编程最佳实践"></a>Netty的多线程编程最佳实践</h3><ul>
-<li>创建两个NioEventLoopGroup，用于逻辑隔离NIO Acceptor和NIO I/O线程。</li>
-<li>尽量不要在ChannelHandler中启动用户线程（解码后用于将POJO消息派发到后端业务线程的除外）。</li>
-<li>解码要放在NIO线程调用的解码Handler中进行，不要切换到用户线程中完成消息的解码。</li>
-<li>如果业务逻辑操作非常简单，没有复杂的业务逻辑计算，没有可能会导致线程被阻塞的磁盘操作、数据库操作、网路操作等，可以直接在NIO线程上完成业务逻辑编排，不需要切换到用户线程。</li>
-<li>如果业务逻辑处理复杂，不要在NIO线程上完成，建议将解码后的POJO消息封装成Task，派发到业务线程池中由业务线程执行，以保证NIO线程尽快被释放，处理其他的I/O操作。</li>
-</ul>
-
-          
+          <p>在阅读《Netty实战》时，发现需要反复阅读和实践才能真正理解Netty的设计，这次用的比较多的就是其线程模型，但其实每一块内容都值得反复思考和实践。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/09/Netty笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -581,18 +668,14 @@
 
       
         
-          
-            <p>自己动手实现了简单的负载均衡算法，觉得写的不是很好，线程安全性上等各方面考虑不周全，结合Dubbo相关源码，整理思考一下，理解其扩展性。<br>先看一下接口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * LoadBalance. (SPI, Singleton, ThreadSafe)</span><br><span class="line"> * &lt;p&gt;</span><br><span class="line"> * &lt;a href=&quot;http://en.wikipedia.org/wiki/Load_balancing_(computing)&quot;&gt;Load-Balancing&lt;/a&gt;</span><br><span class="line"> *</span><br><span class="line"> * @see com.alibaba.dubbo.rpc.cluster.Cluster#join(Directory)</span><br><span class="line"> */</span><br><span class="line">@SPI(RandomLoadBalance.NAME)</span><br><span class="line">public interface LoadBalance &#123;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * select one invoker in list.</span><br><span class="line">     *</span><br><span class="line">     * @param invokers   invokers.</span><br><span class="line">     * @param url        refer url</span><br><span class="line">     * @param invocation invocation.</span><br><span class="line">     * @return selected invoker.</span><br><span class="line">     */</span><br><span class="line">    @Adaptive(&quot;loadbalance&quot;)</span><br><span class="line">    &lt;T&gt; Invoker&lt;T&gt; select(List&lt;Invoker&lt;T&gt;&gt; invokers, URL url, Invocation invocation) throws RpcException;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>注释中第一条是SPI，查询了一下相关内容</p>
-<blockquote>
-<p>SPI的全名为Service Provider Interface。大多数开发人员可能不熟悉，因为这个是针对厂商或者插件的。在java.util.ServiceLoader的文档里有比较详细的介绍。简单的总结下java spi机制的思想。我们系统里抽象的各个模块，往往有很多不同的实现方案，比如日志模块的方案，xml解析模块、jdbc模块的方案等。面向的对象的设计里，我们一般推荐模块之间基于接口编程，模块之间不对实现类进行硬编码。一旦代码里涉及具体的实现类，就违反了可拔插的原则，如果需要替换一种实现，就需要修改代码。为了实现在模块装配的时候能不在程序里动态指明，这就需要一种服务发现机制。 java spi就是提供这样的一个机制：为某个接口寻找服务实现的机制。有点类似IOC的思想，就是将装配的控制权移到程序之外，在模块化设计中这个机制尤其重要，java spi的具体约定为:当服务的提供者，提供了服务接口的一种实现之后，在jar包的META-INF/services/目录里同时创建一个以服务接口命名的文件。该文件里就是实现该服务接口的具体实现类。而当外部程序装配这个模块的时候，就能通过该jar包META-INF/services/里的配置文件找到具体的实现类名，并装载实例化，完成模块的注入。 基于这样一个约定就能很好的找到服务接口的实现类，而不需要再代码里制定。jdk提供服务实现查找的一个工具类：java.util.ServiceLoader。</p>
-</blockquote>
-<p>但是Dubbo中使用的SPI技术不是源用JDK的，但是思想是一样的。同时说明了是单例，线程安全，并给出了维基百科中负载均衡的相关信息。<br>接口中的唯一方法也很好理解，再去看一下抽象类：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public abstract class AbstractLoadBalance implements LoadBalance &#123;</span><br><span class="line"></span><br><span class="line">    static int calculateWarmupWeight(int uptime, int warmup, int weight) &#123;</span><br><span class="line">        int ww = (int) ((float) uptime / ((float) warmup / (float) weight));</span><br><span class="line">        return ww &lt; 1 ? 1 : (ww &gt; weight ? weight : ww);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public &lt;T&gt; Invoker&lt;T&gt; select(List&lt;Invoker&lt;T&gt;&gt; invokers, URL url, Invocation invocation) &#123;</span><br><span class="line">        if (invokers == null || invokers.isEmpty())</span><br><span class="line">            return null;</span><br><span class="line">        if (invokers.size() == 1)</span><br><span class="line">            return invokers.get(0);</span><br><span class="line">        return doSelect(invokers, url, invocation);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    protected abstract &lt;T&gt; Invoker&lt;T&gt; doSelect(List&lt;Invoker&lt;T&gt;&gt; invokers, URL url, Invocation invocation);</span><br><span class="line"></span><br><span class="line">    protected int getWeight(Invoker&lt;?&gt; invoker, Invocation invocation) &#123;</span><br><span class="line">        int weight = invoker.getUrl().getMethodParameter(invocation.getMethodName(), Constants.WEIGHT_KEY, Constants.DEFAULT_WEIGHT);</span><br><span class="line">        if (weight &gt; 0) &#123;</span><br><span class="line">            long timestamp = invoker.getUrl().getParameter(Constants.REMOTE_TIMESTAMP_KEY, 0L);</span><br><span class="line">            if (timestamp &gt; 0L) &#123;</span><br><span class="line">                int uptime = (int) (System.currentTimeMillis() - timestamp);</span><br><span class="line">                int warmup = invoker.getUrl().getParameter(Constants.WARMUP_KEY, Constants.DEFAULT_WARMUP);</span><br><span class="line">                if (uptime &gt; 0 &amp;&amp; uptime &lt; warmup) &#123;</span><br><span class="line">                    weight = calculateWarmupWeight(uptime, warmup, weight);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return weight;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>再看一下默认的随机负载均衡和其他策略的具体实现：</p>
-<h2 id="权重随机"><a href="#权重随机" class="headerlink" title="权重随机"></a>权重随机</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class RandomLoadBalance extends AbstractLoadBalance &#123;</span><br><span class="line"></span><br><span class="line">    public static final String NAME = &quot;random&quot;;</span><br><span class="line"></span><br><span class="line">    private final Random random = new Random();</span><br><span class="line"></span><br><span class="line">    protected &lt;T&gt; Invoker&lt;T&gt; doSelect(List&lt;Invoker&lt;T&gt;&gt; invokers, URL url, Invocation invocation) &#123;</span><br><span class="line">        int length = invokers.size(); // Number of invokers</span><br><span class="line">        int totalWeight = 0; // The sum of weights</span><br><span class="line">        boolean sameWeight = true; // Every invoker has the same weight?</span><br><span class="line">        for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            int weight = getWeight(invokers.get(i), invocation);</span><br><span class="line">            totalWeight += weight; // Sum</span><br><span class="line">            if (sameWeight &amp;&amp; i &gt; 0</span><br><span class="line">                    &amp;&amp; weight != getWeight(invokers.get(i - 1), invocation)) &#123;</span><br><span class="line">                sameWeight = false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (totalWeight &gt; 0 &amp;&amp; !sameWeight) &#123;</span><br><span class="line">            // If (not every invoker has the same weight &amp; at least one invoker&apos;s weight&gt;0), select randomly based on totalWeight.</span><br><span class="line">            int offset = random.nextInt(totalWeight);</span><br><span class="line">            // Return a invoker based on the random value.</span><br><span class="line">            for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">                offset -= getWeight(invokers.get(i), invocation);</span><br><span class="line">                if (offset &lt; 0) &#123;</span><br><span class="line">                    return invokers.get(i);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        // If all invokers have the same weight value or totalWeight=0, return evenly.</span><br><span class="line">        return invokers.get(random.nextInt(length));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以看到，首先对权重求和ws，并在遍历过程中判断权重是否有差异，如果有差异，那么按权重进行随机，通过在[0, ws]区间上的随机数依次减去权重，当小于零时便返回结果，最后是对权重相等时进行返回结果。比起我通过（1）区间判断的方式或者（2）装填List上来说，空间和时间复杂度都要优化很多，代码也更漂亮。</p>
-<h2 id="轮询RoundRobin"><a href="#轮询RoundRobin" class="headerlink" title="轮询RoundRobin"></a>轮询RoundRobin</h2>
-          
+          <p>自己动手实现了简单的负载均衡算法，觉得写的不是很好，线程安全性上等各方面考虑不周全，结合Dubbo相关源码，整理思考一下，理解其扩展性。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/12/负载均衡算法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -831,42 +914,14 @@
 
       
         
-          
-            <h2 id="Q1"><a href="#Q1" class="headerlink" title="Q1"></a>Q1</h2><blockquote>
-<p>设计一个类，我们只能生成该类的一个实例。</p>
-</blockquote>
-<p>单例模式（Singleton）</p>
-<h3 id="懒汉，线程不安全（安全）"><a href="#懒汉，线程不安全（安全）" class="headerlink" title="懒汉，线程不安全（安全）"></a>懒汉，线程不安全（安全）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;  </span><br><span class="line">    private static Singleton instance;  </span><br><span class="line">    private Singleton ()&#123;&#125;  </span><br><span class="line">  </span><br><span class="line">    public static (synchronized) Singleton getInstance() &#123;  </span><br><span class="line">    if (instance == null) &#123;  </span><br><span class="line">        instance = new Singleton();  </span><br><span class="line">    &#125;  </span><br><span class="line">    return instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>优化上述线程安全的例子，双重检查锁定：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;  </span><br><span class="line">    private static volatile Singleton instance = null;  </span><br><span class="line">    private Singleton ()&#123;&#125;  </span><br><span class="line">  </span><br><span class="line">    public static Singleton getInstance() &#123;  </span><br><span class="line">    if (instance == null) &#123;</span><br><span class="line">		sychronized (Singleton.class) &#123;</span><br><span class="line">			if (instance == null) &#123;  </span><br><span class="line">		        instance = new Singleton();  </span><br><span class="line">		    &#125;  </span><br><span class="line">		&#125;</span><br><span class="line">    &#125;  </span><br><span class="line">    return instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="饿汉"><a href="#饿汉" class="headerlink" title="饿汉"></a>饿汉</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;  </span><br><span class="line">    private static Singleton instance = new Singleton();  </span><br><span class="line">    private Singleton ()&#123;&#125;  </span><br><span class="line">    public static Singleton getInstance() &#123;  </span><br><span class="line">    	return instance;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Singleton &#123;  </span><br><span class="line">    private static class SingletonHolder &#123;  </span><br><span class="line">    	private static final Singleton INSTANCE = new Singleton();  </span><br><span class="line">    &#125;  </span><br><span class="line">    private Singleton ()&#123;&#125;  </span><br><span class="line">    public static final Singleton getInstance() &#123;  </span><br><span class="line">    	return SingletonHolder.INSTANCE;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public enum Singleton &#123;  </span><br><span class="line">    INSTANCE;  </span><br><span class="line">    public void whateverMethod() &#123;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这种方式是Effective Java作者Josh Bloch 提倡的方式，它不仅能避免多线程同步问题，而且还能防止反序列化重新创建新的对象。</p>
-<h3 id="应用尝试："><a href="#应用尝试：" class="headerlink" title="应用尝试："></a>应用尝试：</h3><ul>
-<li>单例路由对象获取注册中心内容的缓存，实现方式：静态内部类</li>
-</ul>
-<h2 id="Q2"><a href="#Q2" class="headerlink" title="Q2"></a>Q2</h2><blockquote>
-<p>在一个长度为n的数组里的所有数字都在0到n-1的范围内。 数组中某些数字是重复的，但不知道有几个数字是重复的。也不知道每个数字重复几次。请找出数组中任意一个重复的数字。 例如，如果输入长度为7的数组{2,3,1,0,2,5,3}，那么对应的输出是第一个重复的数字2。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line">    // Parameters:</span><br><span class="line">    //    numbers:     an array of integers</span><br><span class="line">    //    length:      the length of array numbers</span><br><span class="line">    //    duplication: (Output) the duplicated number in the array number,length of duplication array is 1,so using duplication[0] = ? in implementation;</span><br><span class="line">    //                  Here duplication like pointor in C/C++, duplication[0] equal *duplication in C/C++</span><br><span class="line">    //    这里要特别注意~返回任意重复的一个，赋值duplication[0]</span><br><span class="line">    // Return value:       true if the input is valid, and there are some duplications in the array number</span><br><span class="line">    //                     otherwise false</span><br><span class="line">    public boolean duplicate(int numbers[],int length,int [] duplication) &#123;</span><br><span class="line">        if(length &lt;= 0 || numbers == null) &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        for(int i = 0; i &lt; numbers.length; ++i) &#123;</span><br><span class="line">            if(numbers[i] &lt; 0 || numbers[i] &gt; numbers.length -1) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        for(int i = 0; i &lt; numbers.length; ++i) &#123;</span><br><span class="line">            while(numbers[i] != i) &#123;</span><br><span class="line">                if(numbers[i] == numbers[numbers[i]]) &#123;</span><br><span class="line">                    duplication[0] = numbers[i];</span><br><span class="line">                    return true;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                int temp = numbers[i];</span><br><span class="line">                numbers[i] = numbers[numbers[i]];</span><br><span class="line">                numbers[temp] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        return false;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Q3"><a href="#Q3" class="headerlink" title="Q3"></a>Q3</h2><blockquote>
-<p>一个链表中包含环，请找出该链表的环的入口结点。</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> public class ListNode &#123;</span><br><span class="line">    int val;</span><br><span class="line">    ListNode next = null;</span><br><span class="line"></span><br><span class="line">    ListNode(int val) &#123;</span><br><span class="line">        this.val = val;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">*/</span><br><span class="line">public class Solution &#123;</span><br><span class="line"></span><br><span class="line">    public ListNode EntryNodeOfLoop(ListNode pHead)</span><br><span class="line">    &#123;</span><br><span class="line">        if(pHead == null) &#123;</span><br><span class="line">            return null;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode fast = pHead;</span><br><span class="line">        ListNode slow = pHead; </span><br><span class="line">        while(fast != null &amp;&amp; fast.next != null) &#123;</span><br><span class="line">            fast = fast.next.next;</span><br><span class="line">            slow = slow.next;</span><br><span class="line">            </span><br><span class="line">            if(fast == slow) &#123;</span><br><span class="line">                slow = pHead;</span><br><span class="line">                </span><br><span class="line">                while(slow != fast) &#123;</span><br><span class="line">                    slow = slow.next;</span><br><span class="line">                    fast = fast.next;</span><br><span class="line">                &#125;</span><br><span class="line">                return slow;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return null;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="Q4"><a href="#Q4" class="headerlink" title="Q4"></a>Q4</h2><blockquote>
-<p>在一个长度为n+1的数组里的所有数字都在1~n的范围内，所以数组中至少有一个数字是重复的。请找出数组中任意一个重复的数字，但是不能修改输入的数组。例如，如果输入长度为8的数组{2,3,5,4,3,2,6,7}，那么对应的输出是重复的数字2或者3。</p>
-</blockquote>
-<h3 id="不利用额外空间的算法"><a href="#不利用额外空间的算法" class="headerlink" title="不利用额外空间的算法"></a>不利用额外空间的算法</h3><p>最差的情况下，不存在重复数字的时间复杂度为O(\(n ^ 2\)),否则为O(\(n \ast \log(n)\))。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">public class Solution &#123;</span><br><span class="line"></span><br><span class="line">    public int findDuplication(int[] nums)&#123;</span><br><span class="line">        if (nums == null) &#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i : nums) &#123;</span><br><span class="line">            if (i &gt; nums.length - 1 || i &lt; 0) &#123;</span><br><span class="line">                return -1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int start = 1;</span><br><span class="line">        int end = nums.length - 1;</span><br><span class="line"></span><br><span class="line">        while (end &gt;= start) &#123;</span><br><span class="line">            int middle = (start + end) / 2;</span><br><span class="line">            int count = inside(start, middle, nums);</span><br><span class="line">            if (end == start) &#123;</span><br><span class="line">                if (count &gt; 1) &#123;</span><br><span class="line">                    return start;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            if (count &gt; (middle - start + 1)) &#123;</span><br><span class="line">                end = middle;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                start = middle + 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int inside(int left, int right, int[] nums) &#123;</span><br><span class="line">        int cnt = 0;</span><br><span class="line">        for (int i : nums) &#123;</span><br><span class="line">            if (left &lt;= i &amp;&amp; i &lt;= right) &#123;</span><br><span class="line">                ++cnt;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="Q5"><a href="#Q5" class="headerlink" title="Q5"></a>Q5</h2><p>问题的描述如下：</p>
-<blockquote>
-<p>我们给出一个单向链表，我们需要看看这个链表是否有循环的部分，如果有循环，返回起始的节点，如果没有循环存在，我们返回null。</p>
-</blockquote>
-<ul>
-<li>用HashTable存取结点</li>
-</ul>
-
-          
+          <p>刷题总结，主要来自Leetcode和《剑指Offer》等。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/19/DSAA-Pro/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -983,12 +1038,14 @@
 
       
         
-          
-            <blockquote>
-<p>谈谈final、finally、finalize有什么不同？<br>final 修饰变量，表示地址不能修改，引用不可变。对于基本数据类型来说，地址与值关联，所以不可修改，但对于集合类对象来说，对象里的值仍可以改变。</p>
-</blockquote>
-
-          
+          <p>杜绝“想当然”的Coding，对每个字符负责，了解其原理。<br>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/01/14/Java基础/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1433,7 +1490,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1446,7 +1503,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
