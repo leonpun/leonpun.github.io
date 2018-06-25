@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="LeonPun&#39;s Blog">
 <meta property="og:description" content="杜绝“想当然”的Coding，对每个字符负责，了解其原理。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-24T13:10:38.249Z">
+<meta property="og:updated_time" content="2018-06-25T03:26:00.409Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java基础">
 <meta name="twitter:description" content="杜绝“想当然”的Coding，对每个字符负责，了解其原理。">
@@ -305,6 +305,10 @@
 <p>谈谈final、finally、finalize有什么不同？（为什么业务代码中，很多变量要定义为final，尤其是Collections）</p>
 </blockquote>
 <p>final 修饰变量，表示地址不能修改，引用不可变。对于基本数据类型来说，地址与值关联，所以不可修改，但对于集合类对象来说，对象里的值仍可以改变。</p>
+<blockquote>
+<p>解释一下泛型的类型擦除？（泛型对性能有没有影响？）<br>在Java代码运行的时候，它会将泛型类的类型信息T擦除掉，就是说运行阶段，泛型类代码内部完全不知道类型参数的任何信息。<br>泛型类型在编译期都会被擦除成Object，<strong>造成在泛型代码内部，无法获得任何有关泛型参数类型的信息</strong>（摘自《Java编程思想第4版》）。</p>
+</blockquote>
+<p>不会影响，它是编译期的功能。</p>
 
       
     </div>
@@ -415,7 +419,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

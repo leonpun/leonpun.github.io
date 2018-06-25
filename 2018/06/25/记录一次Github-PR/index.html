@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Linux," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,19 @@
 
 
 
-<meta name="description" content="Shellhttp://man.linuxde.net/ 使用过的命令稍做记录，逐步过渡到熟练使用man命令查询">
-<meta name="keywords" content="Linux">
+<meta name="description" content="首先，Fork关注的项目，然后从自己的远程仓库clone到本地。推送本地分支到自己的远程仓库，找到New pull request。每次提交PR前，一定要做代码同步，从上游（项目）fetch，然后rebase本地仓库，随后push到远程仓库。 这里可以看一下merge和rebase所产生的历史的区别：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux">
-<meta property="og:url" content="http://yoursite.com/2018/06/11/Linux/index.html">
+<meta property="og:title" content="记录一次Github提交PR的过程">
+<meta property="og:url" content="http://yoursite.com/2018/06/25/记录一次Github-PR/index.html">
 <meta property="og:site_name" content="LeonPun&#39;s Blog">
-<meta property="og:description" content="Shellhttp://man.linuxde.net/ 使用过的命令稍做记录，逐步过渡到熟练使用man命令查询">
+<meta property="og:description" content="首先，Fork关注的项目，然后从自己的远程仓库clone到本地。推送本地分支到自己的远程仓库，找到New pull request。每次提交PR前，一定要做代码同步，从上游（项目）fetch，然后rebase本地仓库，随后push到远程仓库。 这里可以看一下merge和rebase所产生的历史的区别：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-21T05:32:26.358Z">
+<meta property="og:image" content="http://yoursite.com/2018/06/25/记录一次Github-PR/rebase.png">
+<meta property="og:updated_time" content="2018-06-25T02:21:30.782Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux">
-<meta name="twitter:description" content="Shellhttp://man.linuxde.net/ 使用过的命令稍做记录，逐步过渡到熟练使用man命令查询">
+<meta name="twitter:title" content="记录一次Github提交PR的过程">
+<meta name="twitter:description" content="首先，Fork关注的项目，然后从自己的远程仓库clone到本地。推送本地分支到自己的远程仓库，找到New pull request。每次提交PR前，一定要做代码同步，从上游（项目）fetch，然后rebase本地仓库，随后push到远程仓库。 这里可以看一下merge和rebase所产生的历史的区别：">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/25/记录一次Github-PR/rebase.png">
 
 
 
@@ -120,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/06/11/Linux/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/25/记录一次Github-PR/"/>
 
 
 
 
 
-  <title>Linux | LeonPun's Blog</title>
+  <title>记录一次Github提交PR的过程 | LeonPun's Blog</title>
   
 
 
@@ -233,7 +234,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/11/Linux/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/25/记录一次Github-PR/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Leon Pun">
@@ -250,7 +251,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Linux</h1>
+          <h1 class="post-title" itemprop="name headline">记录一次Github提交PR的过程</h1>
         
 
         <div class="post-meta">
@@ -262,8 +263,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-11T14:06:56+08:00">
-                2018-06-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-25T09:57:03+08:00">
+                2018-06-25
               </time>
             
 
@@ -300,39 +301,9 @@
       
 
       
-        <h2 id="Shell"><a href="#Shell" class="headerlink" title="Shell"></a>Shell</h2><p><a href="http://man.linuxde.net/" target="_blank" rel="noopener">http://man.linuxde.net/</a></p>
-<p>使用过的命令稍做记录，逐步过渡到熟练使用man命令查询</p>
-<a id="more"></a>
-<p>echo</p>
-<p>set </p>
-<p>touch</p>
-<p>scp</p>
-<p>cat</p>
-<p>rm(谨慎使用！)</p>
-<p>sudo</p>
-<p>ls</p>
-<p>mkdir</p>
-<p>sleep</p>
-<p>tar</p>
-<p>ps</p>
-<p>kill</p>
-<p>[ -a FILE ] 如果 FILE 存在则为真。<br>[ -b FILE ] 如果 FILE 存在且是一个块特殊文件则为真。<br>[ -c FILE ] 如果 FILE 存在且是一个字特殊文件则为真。<br>[ -d FILE ] 如果 FILE 存在且是一个目录则为真。<br>[ -e FILE ] 如果 FILE 存在则为真。<br>[ -f FILE ] 如果 FILE 存在且是一个普通文件则为真。<br>[ -g FILE ] 如果 FILE 存在且已经设置了SGID则为真。<br>[ -h FILE ] 如果 FILE 存在且是一个符号连接则为真。<br>[ -k FILE ] 如果 FILE 存在且已经设置了粘制位则为真。<br>[ -p FILE ] 如果 FILE 存在且是一个名字管道(F如果O)则为真。<br>[ -r FILE ] 如果 FILE 存在且是可读的则为真。<br>[ -s FILE ] 如果 FILE 存在且大小不为0则为真。<br>[ -t FD ] 如果文件描述符 FD 打开且指向一个终端则为真。<br>[ -u FILE ] 如果 FILE 存在且设置了SUID (set user ID)则为真。<br>[ -w FILE ] 如果 FILE 如果 FILE 存在且是可写的则为真。<br>[ -x FILE ] 如果 FILE 存在且是可执行的则为真。<br>[ -O FILE ] 如果 FILE 存在且属有效用户ID则为真。<br>[ -G FILE ] 如果 FILE 存在且属有效用户组则为真。<br>[ -L FILE ] 如果 FILE 存在且是一个符号连接则为真。<br>[ -N FILE ] 如果 FILE 存在 and has been mod如果ied since it was last read则为真。<br>[ -S FILE ] 如果 FILE 存在且是一个套接字则为真。<br>[ FILE1 -nt FILE2 ] 如果 FILE1 has been changed more recently than FILE2,or 如果 FILE1 exists and FILE2 does not则为真。<br>[ FILE1 -ot FILE2 ] 如果 FILE1 比 FILE2 要老, 或者 FILE2 存在且 FILE1 不存在则为真。<br>[ FILE1 -ef FILE2 ] 如果 FILE1 和 FILE2 指向相同的设备和节点号则为真。<br>[ -o OPTIONNAME ] 如果 shell选项 “OPTIONNAME” 开启则为真。<br>[ -z STRING ] “STRING” 的长度为零则为真。<br>[ -n STRING ] or [ STRING ] “STRING” 的长度为非零 non-zero则为真。 </p>
-<p>[ ARG1 OP ARG2 ] “OP” is one of -eq, -ne, -lt, -le, -gt or -ge. These arithmetic binary operators return true if “ARG1” is equal to, not equal to, less than, less than or equal to, greater than, or greater than or equal to “ARG2”, respectively. “ARG1” and “ARG2” are integers. </p>
-<p>数字判断<br>[ $count -gt “1”] 如果$count 大于1 为真<br>-gt  大于<br>-lt    小于<br>-ne  不等于<br>-eq  等于<br>-ge  大于等于<br>-le  小于等于</p>
-<p>[ STRING1 == STRING2 ] 如果2个字符串相同。 “=” may be used instead of “==” for strict POSIX compliance则为真。<br>[ STRING1 != STRING2 ] 如果字符串不相等则为真。<br>[ STRING1 &lt; STRING2 ] 如果 “STRING1” sorts before “STRING2” lexicographically in the current locale则为真。<br>[ STRING1 &gt; STRING2 ] 如果 “STRING1” sorts after “STRING2” lexicographically in the current locale则为真。 </p>
-<p>特殊变量<br>$0    脚本名称<br>$1-9　脚本执行时的参数1到参数9<br>$?    脚本的返回值　　　　<br>$#    脚本执行时，输入的参数的个数<br>$@    输入的参数的具体内容（将输入的参数作为一个多个对象，即是所有参数的一个列表）<br>$*    输入的参数的具体内容（将输入的参数作为一个单词）</p>
-<p>单引号：可以说是所见即所得：即将单引号内的内容原样输出，或者描述为单引号里面看见的是什么就会输出什么。</p>
-<p>双引号：把双引号内的内容输出出来；如果内容中有命令，变量等，会先把变量，命令解析出结果，然后在输出最终内容来。双引号内命令或变量的写法为<code>命令或变量</code>或$（命令或变量）。</p>
-<p>无引号：把内容输出出来，可能不会讲含有空格的字符串视为一个整体输出；如果内容中有命令、变量等，会先把变量、命令解析结果，然后在输出最终内容来；如果字符串中带有空格等特殊字符，则不能完整的输出，需要改加双引号，一般连续的字符串，数字，路径等可以用，不过最好用双引号替代之</p>
-<h2 id="Docker"><a href="#Docker" class="headerlink" title="Docker"></a>Docker</h2><p>docker pull</p>
-<p>docker run</p>
-<p>docker network</p>
-<p>docker logs</p>
-<p>docker stop</p>
-<p>docker rm</p>
-<p>docker rmi</p>
-<h2 id="Epoll"><a href="#Epoll" class="headerlink" title="Epoll"></a>Epoll</h2><p>提纲挈领的思想大致为少数据量用中断，多数据量做中断合并，更大数据量时缓冲区一直存在数据则轮询，目标就是减少响应硬件（网卡）中断。</p>
-<h2 id="mmap"><a href="#mmap" class="headerlink" title="mmap"></a>mmap</h2>
+        <p>首先，Fork关注的项目，然后从自己的远程仓库clone到本地。推送本地分支到自己的远程仓库，找到New pull request。每次提交PR前，一定要做代码同步，从上游（项目）fetch，然后rebase本地仓库，随后push到远程仓库。</p>
+<p>这里可以看一下merge和rebase所产生的历史的区别：<br><img src="/2018/06/25/记录一次Github-PR/rebase.png" title="merge和rebase所产生的历史的区别"></p>
+
       
     </div>
     
@@ -347,12 +318,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
-          
-        </div>
-      
 
       
       
@@ -362,8 +327,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/09/Netty笔记/" rel="next" title="Netty笔记">
-                <i class="fa fa-chevron-left"></i> Netty笔记
+              <a href="/2018/06/21/中间件复赛/" rel="next" title="百万级队列引擎">
+                <i class="fa fa-chevron-left"></i> 百万级队列引擎
               </a>
             
           </div>
@@ -371,10 +336,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/20/rocketmq-strore/" rel="prev" title="RocketMQ-Store">
-                RocketMQ-Store <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -426,17 +387,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -497,22 +449,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell"><span class="nav-number">1.</span> <span class="nav-text">Shell</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker"><span class="nav-number">2.</span> <span class="nav-text">Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Epoll"><span class="nav-number">3.</span> <span class="nav-text">Epoll</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mmap"><span class="nav-number">4.</span> <span class="nav-text">mmap</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
