@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="算法思想 贪心思想     算法思想贪心思想贪心思想保证每次操作都是局部最优的，并且最后得到的结果是全局最优的。 分配饼干  455. Assign Cookies (Easy) 123456Input: [1,2], [1,2,3]Output: 2Explanation: You have 2 children and 3 cookies. The greed factors of 2 c">
+<meta name="description" content="现在LeetCode题库越来越大，本文为精选LeetCode好评题目，来自CyC2018和BitTiger，感谢！">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeetCode">
 <meta property="og:url" content="http://yoursite.com/2018/01/26/LeetCode/index.html">
 <meta property="og:site_name" content="LeonPun&#39;s Blog">
-<meta property="og:description" content="算法思想 贪心思想     算法思想贪心思想贪心思想保证每次操作都是局部最优的，并且最后得到的结果是全局最优的。 分配饼干  455. Assign Cookies (Easy) 123456Input: [1,2], [1,2,3]Output: 2Explanation: You have 2 children and 3 cookies. The greed factors of 2 c">
+<meta property="og:description" content="现在LeetCode题库越来越大，本文为精选LeetCode好评题目，来自CyC2018和BitTiger，感谢！">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-26T02:26:45.532Z">
+<meta property="og:updated_time" content="2018-06-26T02:32:08.491Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode">
-<meta name="twitter:description" content="算法思想 贪心思想     算法思想贪心思想贪心思想保证每次操作都是局部最优的，并且最后得到的结果是全局最优的。 分配饼干  455. Assign Cookies (Easy) 123456Input: [1,2], [1,2,3]Output: 2Explanation: You have 2 children and 3 cookies. The greed factors of 2 c">
+<meta name="twitter:description" content="现在LeetCode题库越来越大，本文为精选LeetCode好评题目，来自CyC2018和BitTiger，感谢！">
 
 
 
@@ -299,7 +299,7 @@
       
 
       
-        <!-- GFM-TOC -->
+        <p>现在LeetCode题库越来越大，本文为精选LeetCode好评题目，来自CyC2018和BitTiger，感谢！<br><a id="more"></a><br><!-- GFM-TOC --></p>
 <ul>
 <li><a href="#算法思想">算法思想</a><ul>
 <li><a href="#贪心思想">贪心思想</a><!-- GFM-TOC -->
@@ -342,7 +342,7 @@
 <p><strong>分隔字符串使同种字符出现在一起</strong> </p>
 <p><a href="https://leetcode.com/problems/partition-labels/description/" target="_blank" rel="noopener">763. Partition Labels (Medium)</a></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Input: S = "ababcbacadefegdehijhklij"</span><br><span class="line">Output: [9,7,8]</span><br><span class="line">Explanation:</span><br><span class="line">The partition is "ababcbaca", "defegde", "hijhklij".</span><br><span class="line">This is a partition so that each letter appears in at most one part.</span><br><span class="line">A partition like "ababcbacadefegde", "hijhklij" is incorrect, because it splits S into less parts.</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">partitionLabels</span><span class="params">(String S)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] lastIndexsOfChar = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; S.length(); i++) &#123;</span><br><span class="line">        lastIndexsOfChar[char2Index(S.charAt(i))] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    List&lt;Integer&gt; partitions = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">    <span class="keyword">int</span> firstIndex = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (firstIndex &lt; S.length()) &#123;</span><br><span class="line">        <span class="keyword">int</span> lastIndex = firstIndex;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = firstIndex; i &lt; S.length() &amp;&amp; i &lt;= lastIndex; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> index = lastIndexsOfChar[char2Index(S.charAt(i))];</span><br><span class="line">            <span class="keyword">if</span> (index &gt; lastIndex) &#123;</span><br><span class="line">                lastIndex = index;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        partitions.add(lastIndex - firstIndex + <span class="number">1</span>);</span><br><span class="line">        firstIndex = lastIndex + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> partitions;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">char2Index</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> c - <span class="string">'a'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Integer&gt; <span class="title">partitionLabels</span><span class="params">(String S)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (S.length() == <span class="number">0</span> || S == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    List&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">    <span class="keyword">int</span>[] map = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">26</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; S.length(); i++) &#123;</span><br><span class="line">        map[S.charAt(i) - <span class="string">'a'</span>] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>, end = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; S.length(); i++) &#123;</span><br><span class="line">        end = Math.max(end, map[S.charAt(i) - <span class="string">'a'</span>]);</span><br><span class="line">        <span class="keyword">if</span> (end == i) &#123;</span><br><span class="line">            res.add(end -start + <span class="number">1</span>);</span><br><span class="line">            start = end + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>种植花朵</strong> </p>
 <p><a href="https://leetcode.com/problems/can-place-flowers/description/" target="_blank" rel="noopener">605. Can Place Flowers (Easy)</a></p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Input: flowerbed = [1,0,0,0,1], n = 1</span><br><span class="line">Output: True</span><br></pre></td></tr></table></figure>
@@ -475,7 +475,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
