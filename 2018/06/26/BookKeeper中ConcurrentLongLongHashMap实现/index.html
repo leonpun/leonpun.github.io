@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="为了尽可能的节省内存，在 GitHub 上翻到了 BookKeeper 用到的 Map ，分析一下它的源码，看看能不能改成用 long 同时存储 key 和 value，或者 int-int 型的。">
+<meta name="description" content="为了尽可能的节省内存，在 GitHub 上翻到了 BookKeeper 用到的 Map 和 Koloboke 的 HashIntIntMap ，分析一下它们的源码，看看能不能改成用 long 同时存储 key 和 value，或者 int-int 型的。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入理解BookKeeper中ConcurrentLongLongHashMap实现">
+<meta property="og:title" content="深入理解BookKeeper中ConcurrentLongLongHashMap实现和Koloboke中HashIntIntMap实现">
 <meta property="og:url" content="http://yoursite.com/2018/06/26/BookKeeper中ConcurrentLongLongHashMap实现/index.html">
 <meta property="og:site_name" content="LeonPun&#39;s Blog">
-<meta property="og:description" content="为了尽可能的节省内存，在 GitHub 上翻到了 BookKeeper 用到的 Map ，分析一下它的源码，看看能不能改成用 long 同时存储 key 和 value，或者 int-int 型的。">
+<meta property="og:description" content="为了尽可能的节省内存，在 GitHub 上翻到了 BookKeeper 用到的 Map 和 Koloboke 的 HashIntIntMap ，分析一下它们的源码，看看能不能改成用 long 同时存储 key 和 value，或者 int-int 型的。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-26T08:45:13.384Z">
+<meta property="og:updated_time" content="2018-06-27T07:56:56.492Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入理解BookKeeper中ConcurrentLongLongHashMap实现">
-<meta name="twitter:description" content="为了尽可能的节省内存，在 GitHub 上翻到了 BookKeeper 用到的 Map ，分析一下它的源码，看看能不能改成用 long 同时存储 key 和 value，或者 int-int 型的。">
+<meta name="twitter:title" content="深入理解BookKeeper中ConcurrentLongLongHashMap实现和Koloboke中HashIntIntMap实现">
+<meta name="twitter:description" content="为了尽可能的节省内存，在 GitHub 上翻到了 BookKeeper 用到的 Map 和 Koloboke 的 HashIntIntMap ，分析一下它们的源码，看看能不能改成用 long 同时存储 key 和 value，或者 int-int 型的。">
 
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <title>深入理解BookKeeper中ConcurrentLongLongHashMap实现 | LeonPun's Blog</title>
+  <title>深入理解BookKeeper中ConcurrentLongLongHashMap实现和Koloboke中HashIntIntMap实现 | LeonPun's Blog</title>
   
 
 
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">深入理解BookKeeper中ConcurrentLongLongHashMap实现</h1>
+          <h1 class="post-title" itemprop="name headline">深入理解BookKeeper中ConcurrentLongLongHashMap实现和Koloboke中HashIntIntMap实现</h1>
         
 
         <div class="post-meta">
@@ -299,7 +299,8 @@
       
 
       
-        <p>为了尽可能的节省内存，在 GitHub 上翻到了 BookKeeper 用到的 Map ，分析一下它的源码，看看能不能改成用 long 同时存储 key 和 value，或者 int-int 型的。<br><a id="more"></a><br>首先，注释中写明它是用线性探查解决冲突的，key 的值必须大于等于 0。</p>
+        <p>为了尽可能的节省内存，在 GitHub 上翻到了 BookKeeper 用到的 Map 和 Koloboke 的 HashIntIntMap ，分析一下它们的源码，看看能不能改成用 long 同时存储 key 和 value，或者 int-int 型的。<br><a id="more"></a></p>
+<h1 id="ConcurrentLongLongHashMap"><a href="#ConcurrentLongLongHashMap" class="headerlink" title="ConcurrentLongLongHashMap"></a>ConcurrentLongLongHashMap</h1><p>首先，注释中写明它是用线性探查解决冲突的，key 的值必须大于等于 0。</p>
 <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>首先我们看一下它底层的数据结构Section，继承自StampedLock，对于索引这种读多写少（？思考）的情境下。<br>table为 long 数组交错存储kv，比如table[0]为key1，table[1]为value1。其他的map都有几个参数在随后的方法中解释。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">long</span>[] table;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> capacity;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">int</span> size;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> usedBuckets;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> resizeThreshold;</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
 <p>再看一下它的构造函数，它的容量为传入参数capacity的两倍，并且全为 -1。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Section(<span class="keyword">int</span> capacity) &#123;</span><br><span class="line">    <span class="keyword">this</span>.capacity = alignToPowerOfTwo(capacity);</span><br><span class="line">    <span class="keyword">this</span>.table = <span class="keyword">new</span> <span class="keyword">long</span>[<span class="number">2</span> * <span class="keyword">this</span>.capacity];</span><br><span class="line">    <span class="keyword">this</span>.size = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">this</span>.usedBuckets = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">this</span>.resizeThreshold = (<span class="keyword">int</span>) (<span class="keyword">this</span>.capacity * MapFillFactor);</span><br><span class="line">    Arrays.fill(table, EmptyKey);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>put操作</p>
@@ -469,7 +470,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">1.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造函数"><span class="nav-number">2.</span> <span class="nav-text">构造函数</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ConcurrentLongLongHashMap"><span class="nav-number">1.</span> <span class="nav-text">ConcurrentLongLongHashMap</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">1.1.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构造函数"><span class="nav-number">1.2.</span> <span class="nav-text">构造函数</span></a></li></ol></li></ol></div>
             
 
           </div>

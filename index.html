@@ -248,7 +248,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/26/BookKeeper中ConcurrentLongLongHashMap实现/" itemprop="url">深入理解BookKeeper中ConcurrentLongLongHashMap实现</a></h1>
+                <a class="post-title-link" href="/2018/06/26/BookKeeper中ConcurrentLongLongHashMap实现/" itemprop="url">深入理解BookKeeper中ConcurrentLongLongHashMap实现和Koloboke中HashIntIntMap实现</a></h1>
         
 
         <div class="post-meta">
@@ -299,7 +299,7 @@
 
       
         
-          <p>为了尽可能的节省内存，在 GitHub 上翻到了 BookKeeper 用到的 Map ，分析一下它的源码，看看能不能改成用 long 同时存储 key 和 value，或者 int-int 型的。<br>
+          <p>为了尽可能的节省内存，在 GitHub 上翻到了 BookKeeper 用到的 Map 和 Koloboke 的 HashIntIntMap ，分析一下它们的源码，看看能不能改成用 long 同时存储 key 和 value，或者 int-int 型的。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/06/26/BookKeeper中ConcurrentLongLongHashMap实现/#more" rel="contents">
@@ -1161,7 +1161,7 @@
 
       
         
-          <p>现在LeetCode题库越来越大，本文为精选LeetCode好评题目，来自CyC2018和BitTiger，感谢！<br>
+          <p>现在LeetCode题库越来越大，本文为精选LeetCode好评题目。<br>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/01/26/LeetCode/#more" rel="contents">
