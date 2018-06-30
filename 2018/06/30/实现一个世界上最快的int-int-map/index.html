@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="最近看了很多 Map 实现的源码，循迹着一篇比较各类实现性能比较的综述，发现这篇文章，正好切合我的要求。趁着作者给的测评程序跑着（然而已经跑了一个小时了(○´･д･)ﾉ），搜索了一下发现没有人把这么好的文章翻译一下，可能也不是什么高大上的技术，但是这种追求卓越的精神感染到了我，于是决定翻译一下。同时，作者 Mikhail Vorontsov 其他的文章也非常好，有很多 Java 调优技巧和了解 J">
+<meta name="keywords" content="Java">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【译】实现一个世界上最快的int-int map">
+<meta property="og:url" content="http://yoursite.com/2018/06/30/实现一个世界上最快的int-int-map/index.html">
+<meta property="og:site_name" content="LeonPun&#39;s Blog">
+<meta property="og:description" content="最近看了很多 Map 实现的源码，循迹着一篇比较各类实现性能比较的综述，发现这篇文章，正好切合我的要求。趁着作者给的测评程序跑着（然而已经跑了一个小时了(○´･д･)ﾉ），搜索了一下发现没有人把这么好的文章翻译一下，可能也不是什么高大上的技术，但是这种追求卓越的精神感染到了我，于是决定翻译一下。同时，作者 Mikhail Vorontsov 其他的文章也非常好，有很多 Java 调优技巧和了解 J">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://d1k2jhzcfaebet.cloudfront.net/wp-content/uploads/2015/03/openIndex.png">
+<meta property="og:updated_time" content="2018-06-30T09:45:51.575Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【译】实现一个世界上最快的int-int map">
+<meta name="twitter:description" content="最近看了很多 Map 实现的源码，循迹着一篇比较各类实现性能比较的综述，发现这篇文章，正好切合我的要求。趁着作者给的测评程序跑着（然而已经跑了一个小时了(○´･д･)ﾉ），搜索了一下发现没有人把这么好的文章翻译一下，可能也不是什么高大上的技术，但是这种追求卓越的精神感染到了我，于是决定翻译一下。同时，作者 Mikhail Vorontsov 其他的文章也非常好，有很多 Java 调优技巧和了解 J">
+<meta name="twitter:image" content="http://d1k2jhzcfaebet.cloudfront.net/wp-content/uploads/2015/03/openIndex.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/06/30/实现一个世界上最快的int-int-map/"/>
+
+
+
+
+
+  <title>【译】实现一个世界上最快的int-int map | LeonPun's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">LeonPun's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/30/实现一个世界上最快的int-int-map/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leon Pun">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LeonPun's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【译】实现一个世界上最快的int-int map</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-30T15:36:10+08:00">
+                2018-06-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近看了很多 Map 实现的源码，循迹着一篇比较各类实现性能比较的综述，发现这篇文章，正好切合我的要求。趁着作者给的测评程序跑着（然而已经跑了一个小时了(○´･д･)ﾉ），搜索了一下发现没有人把这么好的文章翻译一下，可能也不是什么高大上的技术，但是这种追求卓越的精神感染到了我，于是决定翻译一下。同时，作者 Mikhail Vorontsov 其他的文章也非常好，有很多 Java 调优技巧和了解 Java 性能的内容。</p>
+<blockquote>
+<p>原文地址：<a href="http://java-performance.info/implementing-world-fastest-java-int-to-int-hash-map/" target="_blank" rel="noopener">http://java-performance.info/implementing-world-fastest-java-int-to-int-hash-map/</a></p>
+</blockquote>
+<a id="more"></a>
+<ul>
+<li>最快的 int-to-int map 实现测评请看 <a href="http://java-performance.info/hashmap-overview-jdk-fastutil-goldman-sachs-hppc-koloboke-trove-january-2015/" target="_blank" rel="noopener">我之前的文章</a> 。</li>
+</ul>
+<p>我要感谢 <a href="http://vigna.di.unimi.it/" target="_blank" rel="noopener">Sebastiano Vigna</a> 和 <a href="https://github.com/leventov/" target="_blank" rel="noopener">Roman Leventov</a> 和我分享了实现哈希表的智慧。一些实现的想法也来自于 Kris Kaspersky 的 “Code Optimization: Effective Memory Usage”。</p>
+<p>这篇文章将一步步带你领略各式各样的现代哈希表实现。在文章的最后，你将获得一个可能是撰写本文时最快的 Java int-to-int 哈希表。</p>
+<h2 id="开放地址法"><a href="#开放地址法" class="headerlink" title="开放地址法"></a>开放地址法</h2><p>大多数现代哈希表都是基于开放地址法。这意味着什么？你的哈希表将基于 keys 数组（ values 也会放到这个数组的适当位置，所以现在先忘掉他们）。在进行每个操作时，你必须先在 keys 数组中找到特定的 key 。那么如何实现呢？</p>
+<p>首先，你需要一个起始位置。可以用任何一个哈希函数把 key 映射到[0, length - 1]的区间上。一个 key 通常通过 hashCode 方法映射为一个整数，然后再通过一个简单的哈希函数，例如 Math.abs(key.hashCode() % array.length) （记住，% 运算可能为负值）。</p>
+<p>正如你所知道的，大量的 keys 映射到一个小的哈希表中会产生一些冲突（我们称之为哈希冲突）。寻找不同 keys 的初始位置也一样，可以通过另一个函数来解决冲突，例如 (prevIdx + 1) % array.length ，这就要求这个函数必须能覆盖到整个数组容量。当数组长度为素数时还可以通过偏移一个素数来实现这个函数。</p>
+<h3 id="空单元和已删除单元"><a href="#空单元和已删除单元" class="headerlink" title="空单元和已删除单元"></a>空单元和已删除单元</h3><p>理论上，现在已经可以实现你自己的哈希表了。但实际上，你需要区别空单元和已删除单元（你可以避免标志删除单元，如果在 remove 方法中做一些额外的工作，可以看看 <a href="http://fastutil.di.unimi.it/" target="_blank" rel="noopener">FastUtil</a> 的实现）。已删除单元也叫做“墓碑”。</p>
+<p>你的 keys 可以直接填充到空单元，如果你删除一个已经存在的 key ，你需要将它标志位“已删除”状态。</p>
+<p>看一下如下的例子：</p>
+<p><img src="http://d1k2jhzcfaebet.cloudfront.net/wp-content/uploads/2015/03/openIndex.png" alt="开放地址法示例"></p>
+<p>这个 int 哈希表用如下的初始函数和再探测函数：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">initial = Math.abs( key % array.length );</span><br><span class="line">nextIdx = ( prevIdx + <span class="number">1</span> ) % array.length;</span><br></pre></td></tr></table></figure></p>
+<p>哈希表中有 keys 为1，2，3和4，但是3被删除了，所以用R来占位、</p>
+<p>我们来看一下如何查找下面的 keys ：</p>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>初始函数指向索引为2的单元，匹配查找的 key 2 ，所以不需要其他的查找了</td>
+</tr>
+<tr>
+<td>3</td>
+<td>初始函数指向索引为3的单元，这个单元被标记为“已删除”，所以我们需要应用在探测函数继续查找，直到要查找的 key 或者一个空单元：索引为 4 的单元不匹配，索引为 5 的单元是一个空单元，所以我们停止查找——查找失败</td>
+</tr>
+</tbody>
+</table>
+<p>下面，我们看看如何添加 key = 10 ： initial = key % array.length = 10 % 9 = 1 ，索引为1的单元已经被另外一个 key 占据，所以我们不能使用它。再探测索引为 2 时也是一样的，直到索引为 3 时是已删除单元，所以可以重用它，并把 key = 10 填充到其中。 </p>
+<h3 id="去掉已删除单元"><a href="#去掉已删除单元" class="headerlink" title="去掉已删除单元"></a>去掉已删除单元</h3><p>在许多情况下，如果你要将已删除单元格保留在哈希表中，那么你的哈希映射可能会降级为O（n2）复杂度。高效的哈希表用某种方式去掉已移除单元格。因此所有其他方法都需要区分2种单元状态：空闲或使用。 同时，remove 方法通常不常用，远远小于 put 方法。本文将使用FastUtil的清理逻辑。</p>
+<h3 id="散列加扰"><a href="#散列加扰" class="headerlink" title="散列加扰"></a>散列加扰</h3><p>采用如上的初始函数，当我们需要放置连续的 keys 时，就会造成很长的查找链。为了避免这种情况，我们需要散列加扰，打乱他们的二进制位，例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> INT_PHI = <span class="number">0x9E3779B9</span>;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">phiMix</span><span class="params">( <span class="keyword">final</span> <span class="keyword">int</span> x )</span> </span>&#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> h = x * INT_PHI;</span><br><span class="line">    <span class="keyword">return</span> h ^ (h &gt;&gt; <span class="number">16</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样，连续的 keys 就不会被防止在连续的数组单元中，继而使得查找保持在平均的长度。对于随机的 keys ，它们的分布将会更好。</p>
+<p>现在你已经完全可以实现自己的哈希表了，我们将在本文接下来的几节实现它。</p>
+<h2 id="版本1：基础int-int-哈希表"><a href="#版本1：基础int-int-哈希表" class="headerlink" title="版本1：基础int-int 哈希表"></a>版本1：基础int-int 哈希表</h2><p>我们首先实现足够简单的哈希表（一个足够有优化空间的实现）。这个实现会非常像 Trove 3.0 中的 TIntIntHashMap（我并没有抄袭它的源代码）。</p>
+<p>它将用三个数组：一个 int[] 用来放置 keys，一个 int[] 用来放置 values 还有一个 boolean[] 用来放置“已使用”标志位。我们将为它们分配初始空间（可以是 size / fillFactor + 1）。初始函数和再探测函数如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">initial = Math.abs( Tools.phiMix(key) % array.length);</span><br><span class="line">nextIdx = ( prevIdx + <span class="number">1</span> ) % array.length;</span><br></pre></td></tr></table></figure>
+<p>你可以在本文的结尾看到这个哈希表和其他哈希表的源代码。</p>
+<p>我将对比 <a href="http://java-performance.info/hashmap-overview-jdk-fastutil-goldman-sachs-hppc-koloboke-trove-january-2015/" target="_blank" rel="noopener">之前的文章</a> 的结果.我们将它和 Koloboke 对比，本文所有的测试都是用随机 keys 集合，所有哈希表的填充因子都为 0.75 。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Map size:</th>
+<th style="text-align:left">10.000</th>
+<th style="text-align:left">100.000</th>
+<th style="text-align:left">1.000.000</th>
+<th style="text-align:left">10.000.000</th>
+<th style="text-align:left">100.000.000</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">tests.maptests.primitive.KolobokeMutableMapTest</td>
+<td style="text-align:left">1867</td>
+<td style="text-align:left">2471</td>
+<td style="text-align:left">3129</td>
+<td style="text-align:left">7546</td>
+<td style="text-align:left">11191</td>
+</tr>
+<tr>
+<td style="text-align:left">tests.maptests.article_examples.IntIntMap1Test</td>
+<td style="text-align:left">2768</td>
+<td style="text-align:left">3671</td>
+<td style="text-align:left">6105</td>
+<td style="text-align:left">12313</td>
+<td style="text-align:left">16073</td>
+</tr>
+</tbody>
+</table>
+<p>太棒了！第一个没有优化的尝试只比 Koloboke 慢两倍。</p>
+<h2 id="版本2：避免昂贵的-运算——数组容量变为2的幂次"><a href="#版本2：避免昂贵的-运算——数组容量变为2的幂次" class="headerlink" title="版本2：避免昂贵的 % 运算——数组容量变为2的幂次"></a>版本2：避免昂贵的 % 运算——数组容量变为2的幂次</h2><p>许多人认为整数的除法求余运算已经不再那么慢了——因为新的CPUs更好更快。但是，这是错误的。所有的整数除法运算扔非常慢，在性能严苛的代码中不应出现。</p>
+<p>当前版本的哈希表利用 % 运算符求余，我们可以将数组的长度变为2的幂次来避免它。如下所示：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">initial = Tools.phiMix( key ) &amp; (array.length-<span class="number">1</span>);</span><br><span class="line">nextIdx = ( prevIdx + <span class="number">1</span> ) &amp; (array.length-<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>array.length - 1 应该被缓存到实例域中，为什么它可以被当作 mask 呢？因为如果 K=2^N ,那么 X % K == X &amp; (K - 1)。利用 &amp; 运算可以使得结果非负，并进一步加速计算过程。</p>
+<p>记住所有的高性能哈希表都依靠这个优化。</p>
+<p>让我们再看一下对比结果：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Map size:</th>
+<th style="text-align:left">10.000</th>
+<th style="text-align:left">100.000</th>
+<th style="text-align:left">1.000.000</th>
+<th style="text-align:left">10.000.000</th>
+<th style="text-align:left">100.000.000</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">tests.maptests.primitive.KolobokeMutableMapTest</td>
+<td style="text-align:left">1867</td>
+<td style="text-align:left">2471</td>
+<td style="text-align:left">3129</td>
+<td style="text-align:left">7546</td>
+<td style="text-align:left">11191</td>
+</tr>
+<tr>
+<td style="text-align:left">tests.maptests.article_examples.IntIntMap1Test</td>
+<td style="text-align:left">2768</td>
+<td style="text-align:left">3671</td>
+<td style="text-align:left">6105</td>
+<td style="text-align:left">12313</td>
+<td style="text-align:left">16073</td>
+</tr>
+<tr>
+<td style="text-align:left">tests.maptests.article_examples.IntIntMap2Test</td>
+<td style="text-align:left">2254</td>
+<td style="text-align:left">2767</td>
+<td style="text-align:left">4869</td>
+<td style="text-align:left">10543</td>
+<td style="text-align:left">16724</td>
+</tr>
+</tbody>
+</table>
+<p>这个优化让我们跨越了一大步！接下来还有很长的路要走。</p>
+<h2 id="版本3：摆脱-m-used-数组"><a href="#版本3：摆脱-m-used-数组" class="headerlink" title="版本3：摆脱 m-used 数组"></a>版本3：摆脱 m-used 数组</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/26/BookKeeper中ConcurrentLongLongHashMap实现/" rel="next" title="深入理解BookKeeper中ConcurrentLongLongHashMap实现和Koloboke中HashIntIntMap实现">
+                <i class="fa fa-chevron-left"></i> 深入理解BookKeeper中ConcurrentLongLongHashMap实现和Koloboke中HashIntIntMap实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Leon Pun</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/leonpun" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开放地址法"><span class="nav-number">1.</span> <span class="nav-text">开放地址法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#空单元和已删除单元"><span class="nav-number">1.1.</span> <span class="nav-text">空单元和已删除单元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#去掉已删除单元"><span class="nav-number">1.2.</span> <span class="nav-text">去掉已删除单元</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#散列加扰"><span class="nav-number">1.3.</span> <span class="nav-text">散列加扰</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#版本1：基础int-int-哈希表"><span class="nav-number">2.</span> <span class="nav-text">版本1：基础int-int 哈希表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#版本2：避免昂贵的-运算——数组容量变为2的幂次"><span class="nav-number">3.</span> <span class="nav-text">版本2：避免昂贵的 % 运算——数组容量变为2的幂次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#版本3：摆脱-m-used-数组"><span class="nav-number">4.</span> <span class="nav-text">版本3：摆脱 m-used 数组</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leon Pun</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
