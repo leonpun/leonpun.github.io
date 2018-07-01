@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="最近看了很多 Map 实现的源码，循迹着一篇比较各类实现性能比较的综述，发现这篇文章，正好切合我的要求。趁着作者给的测评程序跑着（然而已经跑了一个小时了(○´･д･)ﾉ），搜索了一下发现没有人把这么好的文章翻译一下，可能也不是什么高大上的技术，但是这种追求卓越的精神感染到了我，于是决定翻译一下。同时，作者 Mikhail Vorontsov 其他的文章也非常好，有很多 Java 调优技巧和了解 J">
+<meta name="description" content="最近看了很多 Map 实现的源码，循迹着一篇比较各类实现性能比较的综述，发现这篇文章，正好切合我的要求。趁着作者给的测评程序跑着（然而已经跑了一个小时了(○´･д･)ﾉ），搜索了一下发现没有人把这么好的文章翻译一下，可能也不是什么高大上的技术，但是这种追求卓越的精神感染到了我，让我想起来以前读CSAPP时的感觉，于是决定翻译一下。同时，作者 Mikhail Vorontsov 其他的文章也非常好，">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【译】实现一个世界上最快的int-int map">
 <meta property="og:url" content="http://yoursite.com/2018/06/30/实现一个世界上最快的int-int-map/index.html">
 <meta property="og:site_name" content="LeonPun&#39;s Blog">
-<meta property="og:description" content="最近看了很多 Map 实现的源码，循迹着一篇比较各类实现性能比较的综述，发现这篇文章，正好切合我的要求。趁着作者给的测评程序跑着（然而已经跑了一个小时了(○´･д･)ﾉ），搜索了一下发现没有人把这么好的文章翻译一下，可能也不是什么高大上的技术，但是这种追求卓越的精神感染到了我，于是决定翻译一下。同时，作者 Mikhail Vorontsov 其他的文章也非常好，有很多 Java 调优技巧和了解 J">
+<meta property="og:description" content="最近看了很多 Map 实现的源码，循迹着一篇比较各类实现性能比较的综述，发现这篇文章，正好切合我的要求。趁着作者给的测评程序跑着（然而已经跑了一个小时了(○´･д･)ﾉ），搜索了一下发现没有人把这么好的文章翻译一下，可能也不是什么高大上的技术，但是这种追求卓越的精神感染到了我，让我想起来以前读CSAPP时的感觉，于是决定翻译一下。同时，作者 Mikhail Vorontsov 其他的文章也非常好，">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://d1k2jhzcfaebet.cloudfront.net/wp-content/uploads/2015/03/openIndex.png">
-<meta property="og:updated_time" content="2018-06-30T10:49:25.684Z">
+<meta property="og:updated_time" content="2018-07-01T13:31:23.135Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【译】实现一个世界上最快的int-int map">
-<meta name="twitter:description" content="最近看了很多 Map 实现的源码，循迹着一篇比较各类实现性能比较的综述，发现这篇文章，正好切合我的要求。趁着作者给的测评程序跑着（然而已经跑了一个小时了(○´･д･)ﾉ），搜索了一下发现没有人把这么好的文章翻译一下，可能也不是什么高大上的技术，但是这种追求卓越的精神感染到了我，于是决定翻译一下。同时，作者 Mikhail Vorontsov 其他的文章也非常好，有很多 Java 调优技巧和了解 J">
+<meta name="twitter:description" content="最近看了很多 Map 实现的源码，循迹着一篇比较各类实现性能比较的综述，发现这篇文章，正好切合我的要求。趁着作者给的测评程序跑着（然而已经跑了一个小时了(○´･д･)ﾉ），搜索了一下发现没有人把这么好的文章翻译一下，可能也不是什么高大上的技术，但是这种追求卓越的精神感染到了我，让我想起来以前读CSAPP时的感觉，于是决定翻译一下。同时，作者 Mikhail Vorontsov 其他的文章也非常好，">
 <meta name="twitter:image" content="http://d1k2jhzcfaebet.cloudfront.net/wp-content/uploads/2015/03/openIndex.png">
 
 
@@ -302,7 +302,7 @@
       
 
       
-        <p>最近看了很多 Map 实现的源码，循迹着一篇比较各类实现性能比较的综述，发现这篇文章，正好切合我的要求。趁着作者给的测评程序跑着（然而已经跑了一个小时了(○´･д･)ﾉ），搜索了一下发现没有人把这么好的文章翻译一下，可能也不是什么高大上的技术，但是这种追求卓越的精神感染到了我，于是决定翻译一下。同时，作者 Mikhail Vorontsov 其他的文章也非常好，有很多 Java 调优技巧和了解 Java 性能的内容。</p>
+        <p>最近看了很多 Map 实现的源码，循迹着一篇比较各类实现性能比较的综述，发现这篇文章，正好切合我的要求。趁着作者给的测评程序跑着（然而已经跑了一个小时了(○´･д･)ﾉ），搜索了一下发现没有人把这么好的文章翻译一下，可能也不是什么高大上的技术，但是这种追求卓越的精神感染到了我，让我想起来以前读CSAPP时的感觉，于是决定翻译一下。同时，作者 Mikhail Vorontsov 其他的文章也非常好，有很多 Java 调优技巧和了解 Java 性能的内容。</p>
 <blockquote>
 <p>原文地址：<a href="http://java-performance.info/implementing-world-fastest-java-int-to-int-hash-map/" target="_blank" rel="noopener">http://java-performance.info/implementing-world-fastest-java-int-to-int-hash-map/</a></p>
 </blockquote>
@@ -364,7 +364,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">KolobokeMutableMapTest</td>
+<td style="text-align:left">KolobokeMap</td>
 <td style="text-align:left">1867</td>
 <td style="text-align:left">2471</td>
 <td style="text-align:left">3129</td>
@@ -372,7 +372,7 @@
 <td style="text-align:left">11191</td>
 </tr>
 <tr>
-<td style="text-align:left">IntIntMap1Test</td>
+<td style="text-align:left">IntIntMap1</td>
 <td style="text-align:left">2768</td>
 <td style="text-align:left">3671</td>
 <td style="text-align:left">6105</td>
@@ -401,7 +401,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">KolobokeMutableMapTest</td>
+<td style="text-align:left">KolobokeMap</td>
 <td style="text-align:left">1867</td>
 <td style="text-align:left">2471</td>
 <td style="text-align:left">3129</td>
@@ -409,7 +409,7 @@
 <td style="text-align:left">11191</td>
 </tr>
 <tr>
-<td style="text-align:left">IntIntMap1Test</td>
+<td style="text-align:left">IntIntMap1</td>
 <td style="text-align:left">2768</td>
 <td style="text-align:left">3671</td>
 <td style="text-align:left">6105</td>
@@ -417,7 +417,7 @@
 <td style="text-align:left">16073</td>
 </tr>
 <tr>
-<td style="text-align:left">IntIntMap2Test</td>
+<td style="text-align:left">IntIntMap2</td>
 <td style="text-align:left">2254</td>
 <td style="text-align:left">2767</td>
 <td style="text-align:left">4869</td>
@@ -451,7 +451,7 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">KolobokeMutableMapTest</td>
+<td style="text-align:left">KolobokeMap</td>
 <td style="text-align:left">1867</td>
 <td style="text-align:left">2471</td>
 <td style="text-align:left">3129</td>
@@ -459,7 +459,7 @@
 <td style="text-align:left">11191</td>
 </tr>
 <tr>
-<td style="text-align:left">IntIntMap1Test</td>
+<td style="text-align:left">IntIntMap1</td>
 <td style="text-align:left">2768</td>
 <td style="text-align:left">3671</td>
 <td style="text-align:left">6105</td>
@@ -467,7 +467,7 @@
 <td style="text-align:left">16073</td>
 </tr>
 <tr>
-<td style="text-align:left">IntIntMap2Test</td>
+<td style="text-align:left">IntIntMap2</td>
 <td style="text-align:left">2254</td>
 <td style="text-align:left">2767</td>
 <td style="text-align:left">4869</td>
@@ -475,7 +475,7 @@
 <td style="text-align:left">16724</td>
 </tr>
 <tr>
-<td style="text-align:left">IntIntMap3Test</td>
+<td style="text-align:left">IntIntMap3</td>
 <td style="text-align:left">2050</td>
 <td style="text-align:left">2269</td>
 <td style="text-align:left">3548</td>
