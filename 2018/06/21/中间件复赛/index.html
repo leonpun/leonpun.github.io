@@ -87,7 +87,7 @@
 <meta property="og:description" content="最近计划把RocketMQ和kafka的Store部分反复理解一下，自己实现一套功能基础的队列引擎，常更常新，觉得还是记录下来比较好！">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/06/21/中间件复赛/架构.png">
-<meta property="og:updated_time" content="2018-07-02T08:25:16.767Z">
+<meta property="og:updated_time" content="2018-07-05T14:41:12.782Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="百万级队列引擎">
 <meta name="twitter:description" content="最近计划把RocketMQ和kafka的Store部分反复理解一下，自己实现一套功能基础的队列引擎，常更常新，觉得还是记录下来比较好！">
@@ -325,6 +325,7 @@
 <li>MappedByteBuffer本身是线程不安全的，因为有position属性，所以要Slice</li>
 <li>使用一到多个DataBlock来存储数据，数量与BlockSize相关</li>
 <li>因为JDK的map是泛型的，参考实现了int-int map</li>
+<li>队列名对应的 map 也替换为基本类型的 tps提升了20w</li>
 </ul>
 
       
