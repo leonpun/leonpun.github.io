@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="LeonPun&#39;s Blog">
 <meta property="og:description" content="在阅读《Netty实战》时，发现需要反复阅读和实践才能真正理解Netty的设计，这次用的比较多的就是其线程模型，但其实每一块内容都值得反复思考和实践。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-21T05:32:59.408Z">
+<meta property="og:updated_time" content="2018-07-11T05:51:59.147Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Netty笔记">
 <meta name="twitter:description" content="在阅读《Netty实战》时，发现需要反复阅读和实践才能真正理解Netty的设计，这次用的比较多的就是其线程模型，但其实每一块内容都值得反复思考和实践。">
@@ -301,11 +301,20 @@
 
       
         <p>在阅读《Netty实战》时，发现需要反复阅读和实践才能真正理解Netty的设计，这次用的比较多的就是其线程模型，但其实每一块内容都值得反复思考和实践。<br><a id="more"></a></p>
-<h2 id="Java-IO"><a href="#Java-IO" class="headerlink" title="Java IO"></a>Java IO</h2><p>策略模式，传入接口，通过回调接口实现的具体方法，提高代码行为的灵活性。<br>装饰器模式<br>Inputstream或Reader,read()<br>OutputStream或Writer,write()</p>
 <h2 id="Netty的组件和设计"><a href="#Netty的组件和设计" class="headerlink" title="Netty的组件和设计"></a>Netty的组件和设计</h2><h3 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h3><p>线程安全的,生命周期：Unregistered、Registered、Active、Inactive</p>
-<h3 id="EventLoop"><a href="#EventLoop" class="headerlink" title="EventLoop"></a>EventLoop</h3><h3 id="ChannelFutrue"><a href="#ChannelFutrue" class="headerlink" title="ChannelFutrue"></a>ChannelFutrue</h3><h3 id="ChannelHandler"><a href="#ChannelHandler" class="headerlink" title="ChannelHandler"></a>ChannelHandler</h3><p>生命周期：Added、Removed、exceptionCaught<br>子接口ChannelInboundHandler、ChannelOutboundHandler<br>适配器类：ChannelHandlerAdapter、ChannelInboundHandlerAdapter、ChannelOutboundHandlerAdapter、ChannelDuplexHandler<br>抽象类：SimpleChannelInboundHandler<br>典型用途：数据格式转换、异常通知、提供Channel变为活动或者非活动的通知、提供Channel注册或注销到EventLoop的通知、提供用户自定义事件的通知<br>ChannelPipeline</p>
-<h3 id="BootStrap"><a href="#BootStrap" class="headerlink" title="BootStrap"></a>BootStrap</h3><p>ServerBootStrap(2个不同的EventLoopGroup，Boss和Worker)<br>ChannelOption属性：<a href="https://www.jianshu.com/p/0bff7c020af2" target="_blank" rel="noopener">https://www.jianshu.com/p/0bff7c020af2</a></p>
-<h3 id="ByteBuf"><a href="#ByteBuf" class="headerlink" title="ByteBuf"></a>ByteBuf</h3><p>三种，维护读写索引<br>堆缓冲区:支撑数组存在JVM堆中，适合于有遗留的数据需要处理<br>直接缓冲区：缺点是分配和释放比较昂贵<br>聚合缓冲区：CompositeByteBuf，应用:HTTP头部和主体<br>ByteBufHolder,将有效负载存储在ByteBuf中的消息对象<br>接口ByteBufAllocator:Pooled and Unpooled</p>
+<h3 id="EventLoop"><a href="#EventLoop" class="headerlink" title="EventLoop"></a>EventLoop</h3><h3 id="ChannelFutrue"><a href="#ChannelFutrue" class="headerlink" title="ChannelFutrue"></a>ChannelFutrue</h3><h3 id="ChannelHandler"><a href="#ChannelHandler" class="headerlink" title="ChannelHandler"></a>ChannelHandler</h3><p>生命周期：Added、Removed、exceptionCaught</p>
+<p>子接口：ChannelInboundHandler、ChannelOutboundHandler</p>
+<p>适配器类：ChannelHandlerAdapter、ChannelInboundHandlerAdapter、ChannelOutboundHandlerAdapter、ChannelDuplexHandler</p>
+<p>抽象类：SimpleChannelInboundHandler</p>
+<p>典型用途：数据格式转换、异常通知、提供Channel变为活动或者非活动的通知、提供Channel注册或注销到EventLoop的通知、提供用户自定义事件的通知<br>ChannelPipeline</p>
+<h3 id="BootStrap"><a href="#BootStrap" class="headerlink" title="BootStrap"></a>BootStrap</h3><p>ServerBootStrap(2个不同的EventLoopGroup，Boss和Worker)</p>
+<p>ChannelOption属性：<a href="https://www.jianshu.com/p/0bff7c020af2" target="_blank" rel="noopener">https://www.jianshu.com/p/0bff7c020af2</a></p>
+<h3 id="ByteBuf"><a href="#ByteBuf" class="headerlink" title="ByteBuf"></a>ByteBuf</h3><p>三种，维护读写索引</p>
+<p>堆缓冲区:支撑数组存在JVM堆中，适合于有遗留的数据需要处理</p>
+<p>直接缓冲区：缺点是分配和释放比较昂贵</p>
+<p>聚合缓冲区：CompositeByteBuf，应用:HTTP头部和主体</p>
+<p>ByteBufHolder,将有效负载存储在ByteBuf中的消息对象</p>
+<p>接口ByteBufAllocator:Pooled and Unpooled</p>
 <h3 id="Netty的多线程编程最佳实践"><a href="#Netty的多线程编程最佳实践" class="headerlink" title="Netty的多线程编程最佳实践"></a>Netty的多线程编程最佳实践</h3><ul>
 <li>创建两个NioEventLoopGroup，用于逻辑隔离NIO Acceptor和NIO I/O线程。</li>
 <li>尽量不要在ChannelHandler中启动用户线程（解码后用于将POJO消息派发到后端业务线程的除外）。</li>
@@ -432,7 +441,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -445,7 +454,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -488,7 +497,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-IO"><span class="nav-number">1.</span> <span class="nav-text">Java IO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Netty的组件和设计"><span class="nav-number">2.</span> <span class="nav-text">Netty的组件和设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Channel"><span class="nav-number">2.1.</span> <span class="nav-text">Channel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EventLoop"><span class="nav-number">2.2.</span> <span class="nav-text">EventLoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ChannelFutrue"><span class="nav-number">2.3.</span> <span class="nav-text">ChannelFutrue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ChannelHandler"><span class="nav-number">2.4.</span> <span class="nav-text">ChannelHandler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BootStrap"><span class="nav-number">2.5.</span> <span class="nav-text">BootStrap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ByteBuf"><span class="nav-number">2.6.</span> <span class="nav-text">ByteBuf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Netty的多线程编程最佳实践"><span class="nav-number">2.7.</span> <span class="nav-text">Netty的多线程编程最佳实践</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Netty的组件和设计"><span class="nav-number">1.</span> <span class="nav-text">Netty的组件和设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Channel"><span class="nav-number">1.1.</span> <span class="nav-text">Channel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EventLoop"><span class="nav-number">1.2.</span> <span class="nav-text">EventLoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ChannelFutrue"><span class="nav-number">1.3.</span> <span class="nav-text">ChannelFutrue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ChannelHandler"><span class="nav-number">1.4.</span> <span class="nav-text">ChannelHandler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BootStrap"><span class="nav-number">1.5.</span> <span class="nav-text">BootStrap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ByteBuf"><span class="nav-number">1.6.</span> <span class="nav-text">ByteBuf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Netty的多线程编程最佳实践"><span class="nav-number">1.7.</span> <span class="nav-text">Netty的多线程编程最佳实践</span></a></li></ol></li></ol></div>
             
 
           </div>

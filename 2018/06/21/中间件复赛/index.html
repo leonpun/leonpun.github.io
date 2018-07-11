@@ -88,7 +88,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2018/06/21/中间件复赛/架构.png">
 <meta property="og:image" content="http://yoursite.com/2018/06/21/中间件复赛/索引随机写架构.png">
-<meta property="og:updated_time" content="2018-07-10T02:05:11.730Z">
+<meta property="og:updated_time" content="2018-07-10T02:44:25.586Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="百万级队列引擎">
 <meta name="twitter:description" content="最近计划把RocketMQ和kafka的Store部分反复理解一下，自己实现一套功能基础的队列引擎，常更常新，觉得还是记录下来比较好！">
@@ -335,6 +335,7 @@
 <li>使用一到多个DataBlock来存储数据，数量与BlockSize相关</li>
 <li>因为JDK的map是泛型的，参考实现了int-int map</li>
 <li>队列名对应的 map 也替换为基本类型的，tps 提升了20w</li>
+<li>池化资源</li>
 </ul>
 
       
@@ -360,8 +361,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/20/rocketmq-strore/" rel="next" title="RocketMQ-Store">
-                <i class="fa fa-chevron-left"></i> RocketMQ-Store
+              <a href="/2018/06/11/Linux/" rel="next" title="Linux">
+                <i class="fa fa-chevron-left"></i> Linux
               </a>
             
           </div>
@@ -449,7 +450,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -462,7 +463,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
