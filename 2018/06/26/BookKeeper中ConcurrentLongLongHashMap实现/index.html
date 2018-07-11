@@ -81,14 +81,14 @@
 
 <meta name="description" content="为了尽可能的节省内存，在 GitHub 上翻到了 BookKeeper 用到的 Map 和 Koloboke 的 HashIntIntMap ，分析一下它们的源码，看看能不能改一个用 int-int 型的来用用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入理解BookKeeper中ConcurrentLongLongHashMap实现和Koloboke中HashIntIntMap实现">
+<meta property="og:title" content="深入理解BookKeeper中ConcurrentLongLongHashMap实现">
 <meta property="og:url" content="http://yoursite.com/2018/06/26/BookKeeper中ConcurrentLongLongHashMap实现/index.html">
 <meta property="og:site_name" content="LeonPun&#39;s Blog">
 <meta property="og:description" content="为了尽可能的节省内存，在 GitHub 上翻到了 BookKeeper 用到的 Map 和 Koloboke 的 HashIntIntMap ，分析一下它们的源码，看看能不能改一个用 int-int 型的来用用。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-11T07:01:15.620Z">
+<meta property="og:updated_time" content="2018-07-11T07:08:27.847Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入理解BookKeeper中ConcurrentLongLongHashMap实现和Koloboke中HashIntIntMap实现">
+<meta name="twitter:title" content="深入理解BookKeeper中ConcurrentLongLongHashMap实现">
 <meta name="twitter:description" content="为了尽可能的节省内存，在 GitHub 上翻到了 BookKeeper 用到的 Map 和 Koloboke 的 HashIntIntMap ，分析一下它们的源码，看看能不能改一个用 int-int 型的来用用。">
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <title>深入理解BookKeeper中ConcurrentLongLongHashMap实现和Koloboke中HashIntIntMap实现 | LeonPun's Blog</title>
+  <title>深入理解BookKeeper中ConcurrentLongLongHashMap实现 | LeonPun's Blog</title>
   
 
 
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">深入理解BookKeeper中ConcurrentLongLongHashMap实现和Koloboke中HashIntIntMap实现</h1>
+          <h1 class="post-title" itemprop="name headline">深入理解BookKeeper中ConcurrentLongLongHashMap实现</h1>
         
 
         <div class="post-meta">
@@ -311,7 +311,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> Section <span class="title">getSection</span><span class="params">(<span class="keyword">long</span> hash)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Use 32 msb out of long to get the section</span></span><br><span class="line">    <span class="keyword">final</span> <span class="keyword">int</span> sectionIdx = (<span class="keyword">int</span>) (hash &gt;&gt;&gt; <span class="number">32</span>) &amp; (sections.length - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> sections[sectionIdx];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>通过哈希函数得到的 hashcode 只拿出高位取模，毕竟数组大小最大只能是 int 的最大值。接下来，就是 put 操作的实现，由于代码太长，我只挑关键的地方解释一下。<br>方法入口如下，找到 index 后主要三种逻辑：存在 key 的话就替换 value 、空 key 就直接赋值，删除过的 key 就重新赋值。如果空间不够就扩容，直到扩容结束再释放锁。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">put</span><span class="params">(<span class="keyword">long</span> key, <span class="keyword">long</span> value, <span class="keyword">int</span> keyHash, <span class="keyword">boolean</span> onlyIfAbsent, LongLongFunction valueProvider)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> stamp = writeLock(); <span class="comment">//分段上锁</span></span><br><span class="line">    <span class="keyword">int</span> bucket = signSafeMod(keyHash, capacity); <span class="comment">//定位Index</span></span><br><span class="line"></span><br><span class="line">	......</span><br></pre></td></tr></table></figure></p>
 <p>get 方法也很好理解不再赘述，扩容时也是采用常规的复制到新数组的办法，只允许单一线程无锁扩容，因为扩容以 section 为单位，所以整体性能比较高。</p>
-<p>最后简单总结一下：ConcurrentLongLongHashMap 主要是利用 StampedLock 实现读写锁分离并且分段进行读写提高了并发性能，同时采用基本数据类型，极大的节省了内存空间，毕竟直观上就少了两个对象头的空间嘛。</p>
+<p>最后简单总结一下：ConcurrentLongLongHashMap 主要是利用 StampedLock 实现读写锁分离并且分段进行读写提高了并发性能，同时采用基本数据类型，极大的节省了内存空间，毕竟直观上就少了两个对象头的空间。ps:一顿 long -&gt; int替换操作后，线程安全的 int-int 的就完成了，代码真健壮，点赞！</p>
 
       
     </div>
