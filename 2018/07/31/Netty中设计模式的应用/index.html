@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="责任链模式针对责任链模式中的要素，看一下对应 Netty 的实现。 责任处理器接口对应于 Netty 中的 ChannelHandler。 public interface ChannelHandler {      void handlerAdded(ChannelHandlerContext ctx) throws Exception;      void handlerRemoved(Cha">
+<meta name="description" content="责任链模式针对责任链模式中的要素，看一下对应 Netty 的实现。">
 <meta name="keywords" content="Netty">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Netty中设计模式的应用">
 <meta property="og:url" content="http://yoursite.com/2018/07/31/Netty中设计模式的应用/index.html">
 <meta property="og:site_name" content="LeonPun&#39;s Blog">
-<meta property="og:description" content="责任链模式针对责任链模式中的要素，看一下对应 Netty 的实现。 责任处理器接口对应于 Netty 中的 ChannelHandler。 public interface ChannelHandler {      void handlerAdded(ChannelHandlerContext ctx) throws Exception;      void handlerRemoved(Cha">
+<meta property="og:description" content="责任链模式针对责任链模式中的要素，看一下对应 Netty 的实现。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-01T02:46:54.602Z">
+<meta property="og:updated_time" content="2018-08-02T09:06:16.505Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Netty中设计模式的应用">
-<meta name="twitter:description" content="责任链模式针对责任链模式中的要素，看一下对应 Netty 的实现。 责任处理器接口对应于 Netty 中的 ChannelHandler。 public interface ChannelHandler {      void handlerAdded(ChannelHandlerContext ctx) throws Exception;      void handlerRemoved(Cha">
+<meta name="twitter:description" content="责任链模式针对责任链模式中的要素，看一下对应 Netty 的实现。">
 
 
 
@@ -301,6 +301,7 @@
 
       
         <h2 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h2><p>针对责任链模式中的要素，看一下对应 Netty 的实现。</p>
+<a id="more"></a>
 <h3 id="责任处理器接口"><a href="#责任处理器接口" class="headerlink" title="责任处理器接口"></a>责任处理器接口</h3><p>对应于 Netty 中的 ChannelHandler。</p>
 <pre><code>public interface ChannelHandler {
 
@@ -317,8 +318,10 @@
 <h3 id="创建链，负责添加删除处理器接口"><a href="#创建链，负责添加删除处理器接口" class="headerlink" title="创建链，负责添加删除处理器接口"></a>创建链，负责添加删除处理器接口</h3><p>对应于 Netty 中的 ChannelPipeline。</p>
 <h3 id="上下文"><a href="#上下文" class="headerlink" title="上下文"></a>上下文</h3><p>对应于 Netty 中的 ChannelHandlerContext。</p>
 <h3 id="责任终止机制"><a href="#责任终止机制" class="headerlink" title="责任终止机制"></a>责任终止机制</h3><p>如果不调用 ChannelHandlerContext 中的 fireChannelxxx 一系列的方法，就会终止传播。默认事件是传播到下一个责任处理器的。</p>
-<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>例如 DefaultEventExecutorChooserFactory 类中，newChooser()方法会根据线程池的大小（是否为2的幂次）动态的选择取模运算的方式。<br>    public final class DefaultEventExecutorChooserFactory implements EventExecutorChooserFactory {</p>
-<pre><code>    public static final DefaultEventExecutorChooserFactory INSTANCE = new DefaultEventExecutorChooserFactory();
+<h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><p>例如 DefaultEventExecutorChooserFactory 类中，newChooser()方法会根据线程池的大小（是否为2的幂次）动态的选择取模运算的方式。</p>
+<pre><code>public final class DefaultEventExecutorChooserFactory implements EventExecutorChooserFactory {
+
+    public static final DefaultEventExecutorChooserFactory INSTANCE = new DefaultEventExecutorChooserFactory();
 
     private DefaultEventExecutorChooserFactory() { }
 
@@ -334,8 +337,14 @@
 
     ······
 }
-</code></pre><p>接下来，next()方法就会有两种实现，分别为：<br>        // PowerOfTwoEventExecutorChooser<br>        @Override<br>        public EventExecutor next() {<br>            return executors[Math.abs(idx.getAndIncrement() % executors.length)];<br>        }</p>
-<pre><code>// GenericEventExecutorChooser
+</code></pre><p>接下来，next()方法就会有两种实现，分别为：</p>
+<pre><code>// PowerOfTwoEventExecutorChooser
+@Override
+public EventExecutor next() {
+    return executors[Math.abs(idx.getAndIncrement() % executors.length)];
+}
+
+// GenericEventExecutorChooser
 @Override
 public EventExecutor next() {
     return executors[idx.getAndIncrement() &amp; executors.length - 1];
@@ -365,7 +374,7 @@ public final class MqttEncoder extends MessageToMessageEncoder&lt;MqttMessage&gt
 
     private ReadTimeoutException() { }
 }
-</code></pre><h2 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h2><p>WrappedByteBuf 类的两个子类 UnreleasableByteBuf 和 ，构造函数中通过调用父类构造函数并重写父类方式实现装饰被装饰者父类，例如 UnreleasableByteBuf 类的 release() 方法是直接返回 false 表示不可被释放。</p>
+</code></pre><h2 id="装饰者模式"><a href="#装饰者模式" class="headerlink" title="装饰者模式"></a>装饰者模式</h2><p>WrappedByteBuf 类的两个子类 UnreleasableByteBuf 和 SimpleLeakAwareByteBuf，构造函数中通过调用父类构造函数并重写父类方式实现装饰被装饰者父类，例如 UnreleasableByteBuf 类的 release() 方法是直接返回 false 表示不可被释放。</p>
 <pre><code>final class UnreleasableByteBuf extends WrappedByteBuf {
 
     private SwappedByteBuf swappedBuf;
@@ -381,8 +390,10 @@ public final class MqttEncoder extends MessageToMessageEncoder&lt;MqttMessage&gt
 
     ······
 }
-</code></pre><p>同样的方式，装饰后可实现跟踪内存泄漏。<br>    class SimpleLeakAwareByteBuf extends WrappedByteBuf {</p>
-<pre><code>    private final ByteBuf trackedByteBuf;
+</code></pre><p>同样的方式，装饰后可实现跟踪内存泄漏。</p>
+<pre><code>class SimpleLeakAwareByteBuf extends WrappedByteBuf {
+
+    private final ByteBuf trackedByteBuf;
     final ResourceLeakTracker&lt;ByteBuf&gt; leak;
 
     SimpleLeakAwareByteBuf(ByteBuf wrapped, ByteBuf trackedByteBuf, ResourceLeakTracker&lt;ByteBuf&gt; leak) {
