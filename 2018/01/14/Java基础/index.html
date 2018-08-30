@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="LeonPun&#39;s Blog">
 <meta property="og:description" content="杜绝“想当然”的Coding，对每个字符负责，了解其原理。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-11T05:47:28.687Z">
+<meta property="og:updated_time" content="2018-08-06T02:13:40.070Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java基础">
 <meta name="twitter:description" content="杜绝“想当然”的Coding，对每个字符负责，了解其原理。">
@@ -302,9 +302,16 @@
       
         <p>杜绝“想当然”的Coding，对每个字符负责，了解其原理。<br><a id="more"></a></p>
 <blockquote>
-<p>谈谈final、finally、finalize有什么不同？（为什么业务代码中，很多变量要定义为final，尤其是Collections）</p>
+<p>谈谈final、finally、finalize有什么不同？（为什么业务代码中，很多变量要定义为final，尤其是Collections？）</p>
 </blockquote>
+<p>Java编程思想中提到，final 修饰方法是两种目的：</p>
+<ul>
+<li>锁定方法不被继承类修改</li>
+<li>效率（内嵌调用，但是当前版本已经不用考虑这些问题）</li>
+</ul>
+<p>另外，如果方法被声明为 private 则默认被修饰为 final。</p>
 <p>final 修饰变量，表示地址不能修改，引用不可变。对于基本数据类型来说，地址与值关联，所以不可修改，但对于集合类对象来说，对象里的值仍可以改变。</p>
+<p>引出发布对象和不可变对象的思考：</p>
 <blockquote>
 <p>解释一下泛型的类型擦除？</p>
 </blockquote>
