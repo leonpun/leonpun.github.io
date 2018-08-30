@@ -87,10 +87,12 @@
 <meta property="og:site_name" content="LeonPun&#39;s Blog">
 <meta property="og:description" content="在阅读《Netty实战》时，发现需要反复阅读和实践才能真正理解Netty的设计，这次用的比较多的就是其线程模型，但其实每一块内容都值得反复思考和实践。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-14T05:03:17.997Z">
+<meta property="og:image" content="http://yoursite.com/2018/06/09/Netty笔记/components.png">
+<meta property="og:updated_time" content="2018-08-30T07:09:26.851Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Netty笔记">
 <meta name="twitter:description" content="在阅读《Netty实战》时，发现需要反复阅读和实践才能真正理解Netty的设计，这次用的比较多的就是其线程模型，但其实每一块内容都值得反复思考和实践。">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/09/Netty笔记/components.png">
 
 
 
@@ -330,7 +332,60 @@
 <li>解决方案</li>
 </ul>
 <p>Netty 是一款异步事件驱动的网络应用框架，用于快速开发高性能、可扩展的服务器端和客户端程序。（文档强调了它的设计哲学，让开发者更舒适、更简单的工作和玩耍）</p>
-<h3 id="实践（略）"><a href="#实践（略）" class="headerlink" title="实践（略）"></a>实践（略）</h3><h3 id="架构总览"><a href="#架构总览" class="headerlink" title="架构总览"></a>架构总览</h3>
+<h3 id="实践（略）"><a href="#实践（略）" class="headerlink" title="实践（略）"></a>实践（略）</h3><h3 id="架构总览"><a href="#架构总览" class="headerlink" title="架构总览"></a>架构总览</h3><img src="/2018/06/09/Netty笔记/components.png" title="Netty架构">
+<h2 id="Netty源码笔记"><a href="#Netty源码笔记" class="headerlink" title="Netty源码笔记"></a>Netty源码笔记</h2><h3 id="服务端启动"><a href="#服务端启动" class="headerlink" title="服务端启动"></a>服务端启动</h3><p>/**</p>
+<ul>
+<li>Netty服务端启动:</li>
+<li>1.创建服务端Channel:创建底层JDK Channel,封装JDK Channel,创建基本组件绑定Channel;</li>
+<li><p></p></li>
+<li>(1)bind(port)[用户代码入口]:serverBootstrap.bind(port)</li>
+<li>(2)initAndRegister()[初始化并注册]</li>
+<li>(3)newChannel()[创建服务端Channel]:</li>
+<li>通过serverBootstrap.channel()方法传入NioServerSocketChannel类构造ReflectiveChannelFactory实例将NioServerSocketChannel类设置为反射类;</li>
+<li>channelFactory.newChannel()通过clazz.newInstance()调用反射类构造方法反射创建服务端Channel</li>
+<li><p></p></li>
+<li>反射创建服务端Channel(查看NioServerSocketChannel构造方法):</li>
+<li>(1)newSocket()[通过JDK来创建底层JDK Channel]:provider.openServerSocketChannel()</li>
+<li>(2)AbstractNioChannel()</li>
+<li>[1]AbstractChannel()[创建id,unsafe,pipeline]</li>
+<li>[2]configureBlocking(false)[阻塞模式]:设置非阻塞模式</li>
+<li>(3)NioServerSocketChannelConfig()[TCP参数配置类]:设置底层JDK Channel TCP参数配置例如backlog、receivebuf、sendbuf</li>
+<li><p></p></li>
+<li>2.初始化服务端Channel:设置Channel基本属性,添加逻辑处理器;</li>
+<li><p></p></li>
+<li>(1)init()[初始化服务端channel,初始化入口]</li>
+<li>(2)set ChannelOptions,ChannelAttrs</li>
+<li>(3)set ChildOptions,ChildAttrs:提供给通过服务端Channel创建的新连接Channel创建的,每次accept新连接都配置用户自定义的两个属性配置</li>
+<li>(4)config handler[配置服务端Pipeline]</li>
+<li>(5)add ServerBootstrapAcceptor[添加连接器]:提供给accept接入的新连接分配NIO线程</li>
+<li>保存用户自定义基本属性,通过配置属性创建连接接入器,连接接入器每次accept新连接使用自定义属性配置新连接</li>
+<li><p></p></li>
+<li>3.注册Selector:将底层JDK Channel注册到事件轮询器Selector上面,并把服务端Channel作为Attachment绑定在对应底层JDK Channel;</li>
+<li><p></p></li>
+<li>(1)AbstractChannel.register(channel)[注册Selector入口]</li>
+<li>(2)this.eventLoop=eventLoop[绑定线程]</li>
+<li>(3)register0()[实际注册]</li>
+<li>[1]doRegister()[调用JDK底层注册]:JDK Channel注册Selector调用javaChannel().register(eventLoop().selector, 0, this),将服务端Channel通过Attachment绑定到Selector</li>
+<li>[2]invokeHandlerAddedIfNeeded():事件回调,触发Handler</li>
+<li>[3]fireChannelRegistered()[传播事件]</li>
+<li><p></p></li>
+<li>4.端口绑定:实现本地端口监听</li>
+<li><p></p></li>
+<li>(1)AbstractUnsafe.bind()[端口绑定]</li>
+<li>(2)doBind():javaChannel().bind()[JDK动态绑定]</li>
+<li>(3)pipeline.fireChannelActive()[传播事件]:HeadContext.readIfIsAutoRead()将注册Selector的事件重新绑定为OP_ACCEPT事件,有新连接接入Selector轮询到OP_ACCEPT事件最终将连接交给Netty处理</li>
+<li>绑定OP_ACCEPT事件:当端口完成绑定触发active事件,active事件最终调用channel的read事件,read对于服务器来说可以读新连接</li>
+<li><p></p></li>
+<li>服务端Socket在哪里初始化?反射创建服务端Channel:NioServerSocketChannel默认构造方法调用newSocket()使用provider.openServerSocketChannel()创建服务端Socket</li>
+<li>在哪里accept连接?端口绑定:Pipeline调用fireChannelActive()传播active事件,HeadContext使用readIfIsAutoRead()重新绑定OP_ACCEPT事件,新连接接入Selector轮询到OP_ACCEPT事件处理</li>
+<li><p></p></li>
+<li>服务端启动核心路径总结:</li>
+<li>首先调用newChannel()创建服务端Channel,调用JDK底层API创建JDK Channel,Netty包装JDK底层Channel,创建基本组件绑定Channel例如Pipeline;</li>
+<li>然后调用init()方法初始化服务端Channel,为服务端Channel添加连接处理器;</li>
+<li>随后调用register()方法注册Selector,将JDK Channel注册到事件轮询器Selector上面,并将服务端Channel作为Attachment绑定到对应JDK底层Channel;</li>
+<li>最后调用doBind()方法实现对本地端口监听,绑定成功重新向Selector注册OP_ACCEPT事件接收新连接<br>*/</li>
+</ul>
+
       
     </div>
     
@@ -505,7 +560,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Netty的组件和设计"><span class="nav-number">1.</span> <span class="nav-text">Netty的组件和设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Channel"><span class="nav-number">1.1.</span> <span class="nav-text">Channel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EventLoop"><span class="nav-number">1.2.</span> <span class="nav-text">EventLoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ChannelFutrue"><span class="nav-number">1.3.</span> <span class="nav-text">ChannelFutrue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ChannelHandler"><span class="nav-number">1.4.</span> <span class="nav-text">ChannelHandler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ChannelPipeline"><span class="nav-number">1.5.</span> <span class="nav-text">ChannelPipeline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BootStrap"><span class="nav-number">1.6.</span> <span class="nav-text">BootStrap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ByteBuf"><span class="nav-number">1.7.</span> <span class="nav-text">ByteBuf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Netty的多线程编程最佳实践"><span class="nav-number">1.8.</span> <span class="nav-text">Netty的多线程编程最佳实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#官方-User-guide-for-4-x"><span class="nav-number">2.</span> <span class="nav-text">官方 User guide for 4.x</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">2.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实践（略）"><span class="nav-number">2.2.</span> <span class="nav-text">实践（略）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架构总览"><span class="nav-number">2.3.</span> <span class="nav-text">架构总览</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Netty的组件和设计"><span class="nav-number">1.</span> <span class="nav-text">Netty的组件和设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Channel"><span class="nav-number">1.1.</span> <span class="nav-text">Channel</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EventLoop"><span class="nav-number">1.2.</span> <span class="nav-text">EventLoop</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ChannelFutrue"><span class="nav-number">1.3.</span> <span class="nav-text">ChannelFutrue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ChannelHandler"><span class="nav-number">1.4.</span> <span class="nav-text">ChannelHandler</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ChannelPipeline"><span class="nav-number">1.5.</span> <span class="nav-text">ChannelPipeline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BootStrap"><span class="nav-number">1.6.</span> <span class="nav-text">BootStrap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ByteBuf"><span class="nav-number">1.7.</span> <span class="nav-text">ByteBuf</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Netty的多线程编程最佳实践"><span class="nav-number">1.8.</span> <span class="nav-text">Netty的多线程编程最佳实践</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#官方-User-guide-for-4-x"><span class="nav-number">2.</span> <span class="nav-text">官方 User guide for 4.x</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">2.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实践（略）"><span class="nav-number">2.2.</span> <span class="nav-text">实践（略）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架构总览"><span class="nav-number">2.3.</span> <span class="nav-text">架构总览</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Netty源码笔记"><span class="nav-number">3.</span> <span class="nav-text">Netty源码笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端启动"><span class="nav-number">3.1.</span> <span class="nav-text">服务端启动</span></a></li></ol></li></ol></div>
             
 
           </div>
